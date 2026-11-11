@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KOOSKOOS · Dossier investisseur / Investor dossier</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+/* Idée de mise en page : récit vertical, bandes encre (ouverture, conclusion) et papier ; tableaux et simulateurs sur fond clair ; marine nuit et or repris du packaging. */
+:root{
+  --ink:#0b1426; --ink-2:#121c33; --paper:#fbf8f1; --cream:#f3ede0; --gold:#9a7a2e; --gold-l:#d4b46a; --green:#16264a; --muted:#6b6256; --line:#ddd3bf; --bad:#a3352b; --good:#2c6b4a;
+  --display:'Cormorant Garamond',Georgia,'Times New Roman',serif; --body:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;margin:0;text-wrap:balance}
+h2{font-size:clamp(30px,5vw,46px)}
+h3{font-size:24px}
+p{margin:0 0 12px;max-width:68ch}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:64px 0;scroll-margin-top:52px}
+.alt{background:var(--cream)}
+.dark{background:var(--ink);color:#efe7d6}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
+.dark .eyebrow{color:var(--gold-l)}
+.lead{font-size:18px;color:#3c352b;max-width:64ch}
+.dark .lead{color:#d9cfba}
+nav.top{position:sticky;top:0;z-index:20;background:rgba(11,20,38,.96);backdrop-filter:blur(6px);border-bottom:1px solid #263554}
+nav.top .wrap{display:flex;gap:4px;overflow-x:auto;align-items:center;padding:0 12px;scrollbar-width:none}
+nav.top a{color:#d9cfba;text-decoration:none;font-size:13px;font-weight:500;padding:14px 10px;white-space:nowrap;border-bottom:2px solid transparent}
+nav.top a.on{color:var(--gold-l);border-bottom-color:var(--gold-l)}
+nav.top a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--gold-l);outline-offset:2px}
+/* Hero */
+.hero{padding:48px 0 56px}
+.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
+.hero h1{font-size:clamp(46px,9vw,92px);letter-spacing:.04em;color:#f6efdc}
+.hero .sub{font-family:var(--display);font-size:clamp(20px,3vw,28px);color:var(--gold-l);margin:10px 0 18px}
+.hero .meta{font-size:13px;color:#b9ae98;margin-top:18px}
+.hero figure{margin:0;border:1px solid var(--gold);padding:8px;background:#070d1a}
+.hero figure img{width:100%;height:auto}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px}
+.kpi{border:1px solid #2c3e63;padding:16px;background:rgba(255,255,255,.03)}
+.kpi b{display:block;font-family:var(--display);font-size:32px;color:var(--gold-l);line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{font-size:13px;color:#cfc5ae}
+.ask{display:inline-block;margin-top:10px;border:1px solid var(--gold-l);padding:14px 20px}
+.ask small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#cfc5ae}
+.ask b{font-family:var(--display);font-size:44px;color:#f6efdc;font-variant-numeric:tabular-nums}
+/* Tables */
+.tw{overflow-x:auto;margin:18px 0}
+table{border-collapse:collapse;width:100%;font-size:15px;font-variant-numeric:tabular-nums}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;background:transparent;border-bottom:2px solid var(--ink)}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.total td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
+.note{border-left:3px solid var(--gold);padding:10px 16px;background:rgba(154,122,46,.08);font-size:15px;margin:18px 0;max-width:72ch}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:22px 0}
+.card{background:#fff;border:1px solid var(--line);padding:18px}
+.card h3{font-size:22px;margin-bottom:6px}
+.card p{font-size:15px;margin:0;color:#3c352b}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:26px}
+.gal figure{margin:0;background:#fff;border:1px solid var(--line)}
+.gal figcaption{font-size:13px;color:var(--muted);padding:8px 12px}
+.gal .wide{grid-column:1/-1}
+/* Controls */
+.panel{background:#fff;border:1px solid var(--line);padding:22px;margin:22px 0}
+.ctl{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;margin-bottom:14px}
+.ctl label{font-size:14px;font-weight:600}
+.ctl output{font-variant-numeric:tabular-nums;font-weight:700;color:var(--green)}
+.ctl input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--green)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:6px 28px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0}
+.tile{border:1px solid var(--line);background:var(--paper);padding:12px 14px}
+.tile small{display:block;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.tile b{font-family:var(--display);font-size:28px;line-height:1.15;font-variant-numeric:tabular-nums}
+.pos{color:var(--good)} .neg{color:var(--bad)}
+.btn{font:inherit;font-size:14px;font-weight:600;padding:9px 16px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.tabs button{font:inherit;font-size:14px;font-weight:600;padding:9px 16px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--green);color:#fff;border-color:var(--green)}
+svg.ch{width:100%;height:auto;display:block}
+svg.ch text{font-family:var(--body);font-size:16px;fill:var(--muted)}
+.bars .r{display:grid;grid-template-columns:minmax(120px,230px) 1fr 92px;gap:10px;align-items:center;padding:6px 0;font-size:14px}
+.bars .t{height:14px;background:var(--cream);position:relative}
+.bars .t i{position:absolute;inset:0 auto 0 0;background:var(--green)}
+.bars .r b{text-align:right;font-variant-numeric:tabular-nums}
+.seg{display:flex;height:44px;margin:14px 0 8px;border:1px solid var(--ink)}
+.seg button{border:0;border-right:1px solid var(--paper);cursor:pointer;min-width:6px;padding:0}
+.seg button[aria-pressed=true]{outline:3px solid var(--gold);outline-offset:-3px}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;font-size:14px}
+.legend button{font:inherit;text-align:left;background:#fff;border:1px solid var(--line);padding:8px 10px;cursor:pointer;display:flex;gap:8px;align-items:flex-start}
+.legend button[aria-pressed=true]{border-color:var(--gold);background:rgba(154,122,46,.1)}
+.sw{width:12px;height:12px;flex:none;margin-top:5px}
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:18px 0 8px}
+.steps button{font:inherit;font-size:13px;font-weight:600;padding:12px 6px;border:1px solid var(--line);background:#fff;cursor:pointer;text-align:center}
+.steps button[aria-pressed=true]{background:var(--ink);color:var(--gold-l);border-color:var(--ink)}
+.phase{border-top:3px solid var(--gold);background:#fff;padding:16px;border-left:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.phase h3{font-size:22px}
+.phase p{font-size:15px}
+.gate{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.gate input{width:20px;height:20px;margin-top:3px;accent-color:var(--green)}
+details{border:1px solid var(--line);background:#fff;margin:12px 0}
+summary{padding:14px 16px;cursor:pointer;font-weight:600;display:flex;justify-content:space-between;gap:12px}
+details .tw{margin:0;padding:0 16px 14px}
+.radio{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.radio button{font:inherit;font-size:14px;padding:10px 16px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:600}
+.radio button[aria-pressed=true]{background:var(--ink);color:var(--gold-l);border-color:var(--ink)}
+footer{background:var(--ink);color:#b9ae98;padding:40px 0;font-size:13px}
+footer p{max-width:80ch}
+@media(max-width:760px){
+  section{padding:48px 0}
+  .hero .grid{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr 1fr}
+  .row2{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .bars .r{grid-template-columns:1fr 70px;}
+  .bars .t{grid-column:1/-1;order:3}
+  .ask b{font-size:36px}
+}
+@media print{nav.top{display:none}section{padding:28px 0;break-inside:avoid}.btn,.tabs,.radio{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.ph{margin:22px 0 0}.ph img{width:100%;height:auto;border:1px solid var(--line)}
+.rec .card{padding:0}.rec .card img{width:100%;aspect-ratio:4/3;object-fit:cover}.rec .card h3,.rec .card p{padding:0 16px}.rec .card h3{padding-top:12px}.rec .card p{padding-bottom:14px}
+.sig{font-family:var(--display);font-style:italic;font-size:clamp(18px,2.4vw,24px);color:#d9cfba;margin:-6px 0 16px}
+.som{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:22px}
+.som .card a{display:block;color:var(--green);text-decoration:none;font-weight:600;padding:5px 0;border-bottom:1px solid var(--line)}
+.som .card a:hover{color:var(--gold)}
+.sigs .card{border-top:3px solid var(--gold)}.sigs .card b{display:block;font-family:var(--display);font-size:26px;font-weight:600;line-height:1.15;margin-bottom:6px}
+.sigs .card small{display:block;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-size:11px;font-weight:700;margin-bottom:6px}
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:18px 0 8px}
+.steps button{font:inherit;font-size:13px;font-weight:600;padding:12px 6px;border:1px solid var(--gold);background:#f6efdc;color:#0b1426;cursor:pointer;text-align:center}
+.steps button[aria-pressed=true]{background:#0b1426;color:#d6b878;border-color:#0b1426}
+@media(max-width:700px){.steps{grid-template-columns:repeat(3,1fr)}}
+.jr{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:20px 0}
+.jr .st{background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);padding:16px;color:var(--ink)}
+.jr .st b.n{display:inline-block;font-family:var(--display);font-size:30px;color:var(--gold);line-height:1}
+.jr .st h3{font-size:22px;margin:4px 0 8px}.jr .st p{font-size:14.5px;margin:0 0 8px;color:#3c352b}
+button,.btn{color:var(--ink)}
+.lang{margin-left:auto;display:flex;gap:4px;position:sticky;right:0;padding:8px 0 8px 10px;background:rgba(11,20,38,.96)}
+.lang button{font:inherit;font-size:12px;font-weight:700;letter-spacing:.08em;padding:6px 12px;border:1px solid #6b5a3a;background:transparent;color:#d9cfba;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--gold-l);color:var(--ink);border-color:var(--gold-l)}
+</style>
+</head>
+<body>
+<nav aria-label="Sommaire" class="top"><div class="wrap"><div id="nav" style="display:flex;gap:4px"></div><div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-l="fr" aria-pressed="true">FR</button><button type="button" data-l="en" aria-pressed="false">EN</button></div></div></nav>
+<header class="dark hero" id="top">
+<div class="wrap">
+<figure style="margin:0 0 30px;padding:6px"><video aria-label="Film KOOSKOOS" controls="" id="filmv" playsinline="" poster="kooskoos_fin_fr.png" preload="metadata" style="width:100%;height:auto;display:block;background:#070d1a"><source id="films" src="kooskoos_film_v8_fr.mp4" type="video/mp4"/></video></figure><div class="grid" style="grid-template-columns:1fr">
+<div>
+<div class="eyebrow" data-en="Feasibility study and investment proposal">Dossier de faisabilité et proposition d'investissement</div>
+<h1>KOOSKOOS</h1>
+<div class="sub">Hmmm… Kwayyes ! <span style="font-size:.8em;color:#f6efdc">كويس</span></div>
+<p class="sig" data-en="Couscous, the way it was meant to be">Le couscous, dans les règles de l'art</p>
+<p class="lead" data-en="An artisanal couscous concept designed for Riyadh: an efficient production kitchen, a short menu of four recipes, fast service and a gradual rollout into a network.">Un concept de couscous artisanal pensé pour Riyad : une cuisine de production efficace, une carte courte de quatre recettes, un service rapide et un développement progressif en réseau.</p>
+<div class="ask"><small data-en="Recommended investment">Investissement recommandé</small><b data-en="550,000 SAR">550 000 SAR</b></div>
+<div class="meta" data-en="Riyadh, Saudi Arabia · Investor edition · November 2026">Riyad, Arabie saoudite · Édition investisseur · Novembre 2026</div>
+</div>
+
+</div>
+<div class="kpis">
+<div class="kpi"><b data-en="323,400">323 400</b><span data-en="SAR to open, initial cash and contingency included">SAR d'ouverture, trésorerie initiale et imprévus inclus</span></div>
+<div class="kpi"><b data-en="225,000">225 000</b><span data-en="SAR reserve, six months of fixed costs">SAR de réserve, six mois de charges fixes</span></div>
+<div class="kpi"><b>≈ 32</b><span data-en="bowls a day to cover fixed costs">bowls par jour pour couvrir les charges fixes</span></div>
+<div class="kpi"><b>4</b><span data-en="recipes, 4 multi-skilled team members">recettes, 4 collaborateurs polyvalents</span></div>
+</div>
+</div>
+</header><section id="sommaire"><div class="wrap"><div class="eyebrow" data-en="Contents">Sommaire</div><h2 data-en="The dossier at a glance">Le dossier en un coup d'œil</h2><div class="som"><div class="card"><h3 data-en="The essentials">L'essentiel</h3><a data-en="The film" href="#top">Le film</a><a data-en="Proposal" href="#proposition">Proposition</a></div><div class="card"><h3 data-en="The brand">La marque</h3><a data-en="Concept and identity" href="#concept">Concept et identité</a><a data-en="Menu and pricing" href="#carte">Carte et prix</a><a data-en="Target market" href="#marche">Marché cible</a></div><div class="card"><h3 data-en="Operations">L'opérationnel</h3><a href="#production">Production</a><a data-en="Kitchen" href="#cuisine">Cuisine</a><a data-en="Hours and team" href="#equipe">Horaires et équipe</a></div><div class="card"><h3 data-en="The numbers">L'argent</h3><a data-en="Opening budget" href="#budget">Budget d'ouverture</a><a data-en="Fixed costs" href="#charges">Charges fixes</a><a data-en="Simulator" href="#eco">Simulateur</a><a data-en="Trajectories" href="#trajectoires">Trajectoires</a><a data-en="Release of funds" href="#decaissement">Décaissement</a></div><div class="card"><h3 data-en="What's next">La suite</h3><a data-en="Network" href="#reseau">Réseau</a><a data-en="Risks" href="#risques">Risques</a><a href="#conclusion">Conclusion</a></div></div></div></section><section class="" id="proposition">
+<div class="wrap">
+<div class="eyebrow" data-en="01 · Proposal">01 · Proposition</div>
+<h2 data-en="A clear envelope, released in stages">Une enveloppe lisible, débloquée par étapes</h2>
+<p class="lead" data-en="KOOSKOOS is launching a specialist premium couscous brand, with a first site as a dark kitchen in Riyadh. The funding covers incorporation, fit-out, staff, stock, marketing and an operating reserve.">KOOSKOOS lance une marque spécialisée de couscous premium, avec une première implantation en dark kitchen à Riyad. Le financement couvre la constitution, l'installation, le personnel, le stock, le marketing et une réserve de fonctionnement.</p>
+<div class="tw"><table>
+<tr><th data-en="Indicator">Indicateur</th><th data-en="Working assumption">Hypothèse retenue</th></tr>
+<tr><td data-en="Recommended need">Besoin recommandé</td><td data-en="550,000 SAR, rounded up from 548,400 SAR">550 000 SAR, arrondi de 548 400 SAR</td></tr>
+<tr><td data-en="Launch investment">Investissement de lancement</td><td data-en="323,400 SAR, initial reserve included">323 400 SAR, réserve initiale incluse</td></tr>
+<tr><td data-en="Operating reserve">Réserve d'exploitation</td><td data-en="225,000 SAR, i.e. 6 months of fixed costs">225 000 SAR, soit 6 mois de charges fixes</td></tr>
+<tr><td data-en="Team">Équipe</td><td data-en="4 multi-skilled team members">4 collaborateurs polyvalents</td></tr>
+<tr><td data-en="Products">Produits</td><td data-en="Chicken, lamb, merguez, vegetarian">Poulet, agneau, merguez, végétarien</td></tr>
+<tr><td data-en="Selling price incl. VAT">Prix de vente TTC</td><td>69 / 89 / 79 / 59 SAR</td></tr>
+<tr><td data-en="Opening hours">Ouverture</td><td data-en="Lunch and dinner; 11 am–11 pm is a planning proposal, not a fixed schedule">Déjeuner et dîner ; 11 h–23 h est une proposition de planification, non un horaire arrêté</td></tr>
+<tr><td>Distribution</td><td data-en="Delivery platforms, direct orders, B2B and group orders">Plateformes de livraison, commandes directes, B2B et commandes groupées</td></tr>
+</table></div>
+<div class="note" data-en="The funding is not spent in full on day one: part of it is an available reserve. If the business covers its costs, the unused cash can support opening a second site, after a safety cushion is kept.">Le financement n'est pas dépensé intégralement le premier jour : une part constitue une réserve disponible. Si l'activité couvre ses charges, la trésorerie non mobilisée peut soutenir l'ouverture d'un second point, après conservation d'un matelas de sécurité.</div>
+</div>
+</section><section class="alt" id="concept">
+<div class="wrap">
+<div class="eyebrow" data-en="02 · Concept and identity">02 · Concept et identité</div>
+<h2 data-en="Couscous at the heart of the brand">Le couscous comme cœur de marque</h2>
+<p class="lead" data-en="The core product is couscous, in an individual bowl for delivery and in formats suited to group orders. The concept rests on mastering steamed semolina, broths, vegetables, proteins and consistent portioning.">Le produit central est le couscous, en bowl individuel pour la livraison et en formats adaptés aux commandes de groupe. Le concept repose sur la maîtrise de la semoule vapeur, des bouillons, des légumes, des protéines et de la régularité de portionnement.</p>
+<div class="cards">
+<div class="card"><h3 data-en="Product promise">Promesse produit</h3><p data-en="Four items rather than a long menu, standardised recipes, a separate broth to preserve textures in transit and packaging designed for delivery.">Quatre références plutôt qu'une carte étendue, des recettes standardisées, un bouillon séparé pour préserver les textures pendant le transport et un conditionnement pensé pour la livraison.</p></div>
+<div class="card"><h3 data-en="Differentiation">Différenciation</h3><p data-en="Couscous is already sold in Riyadh. KOOSKOOS stands out through specialisation, consistency, a strong identity, premium presentation and a centralised production that can be rolled out.">Des couscous sont déjà vendus à Riyad. KOOSKOOS se distingue par la spécialisation, la constance, une identité forte, la présentation premium et une production centralisée déployable.</p></div>
+<div class="card"><h3 data-en="To be proven">À démontrer</h3><p data-en="This positioning remains a commercial hypothesis, to be validated by sales and repeat orders over the first months.">Ce positionnement reste une hypothèse commerciale, validée par les ventes et les réachats pendant les premiers mois.</p></div>
+</div>
+<div class="gal"><figure class="wide"><img alt="Packaging KOOSKOOS marine et or : bowl, sac, sac isotherme, bouteilles Leben et sharbat citron" data-alt-en="KOOSKOOS navy and gold packaging: bowl, bag, insulated bag, Leben and lemon sharbat bottles" loading="lazy" src="img2/pack.jpg"/><figcaption data-en="Brand universe: midnight navy and gold, bowl, bag, insulated delivery bag, Leben and lemon sharbat drinks.">Univers de marque : marine nuit et or, bowl, sac, sac isotherme de livraison et boissons Leben et sharbat citron.</figcaption></figure><figure><img alt="Wordmark KOOSKOOS dont les O sont des bols et des couscoussiers" data-alt-en="KOOSKOOS wordmark whose Os are bowls and couscous steamers" loading="lazy" src="img2/wordmark-bols.jpg"/><figcaption data-en="Wordmark: the “OO” become a bowl and a couscous steamer.">Wordmark : les « OO » deviennent bol et couscoussier.</figcaption></figure><figure><img alt="Monogramme KOO" data-alt-en="KOO monogram" loading="lazy" src="img2/monogramme.jpg"/><figcaption data-en="KOO monogram for small formats.">Monogramme KOO pour les petits formats.</figcaption></figure></div><h3 data-en="Brand signatures" style="margin-top:34px">Signatures de marque</h3><p data-en="Three lines, three uses: each has a precise role so the brand stays clear everywhere.">Trois phrases, trois usages : chacune a un rôle précis pour que la marque reste lisible partout.</p>
+<div class="cards sigs"><div class="card"><small data-en="Main signature">Signature principale</small><b>Hmmm… Kwayyes ! <span style="font-size:.7em">كويس</span></b><p data-en="The sound of pleasure that says “good” in Arabic (كويس) and rhymes with “couscous”. It is the emblem: spoken in the film, used as a jingle, on social media and as the closing frame.">Le cri de plaisir qui dit « bien » en arabe (كويس) et sonne comme « couscous ». C'est l'emblème : dit à voix haute dans le film, repris en jingle, sur les réseaux et en dernière image.</p></div>
+<div class="card"><small data-en="On the packaging">Sur le packaging</small><b data-en="The heritage of the Maghreb, at your table">L'héritage du Maghreb, à ta table</b><p data-en="Set beneath the seal: it states the origin and the invitation, on every bowl, bag and napkin.">Gravée sous le sceau : elle dit l'origine et l'invitation, sur chaque bowl, sac et serviette.</p></div>
+<div class="card"><small data-en="Quality promise">Promesse qualité</small><b data-en="Couscous, the way it was meant to be">Le couscous, dans les règles de l'art</b><p data-en="Voice-over, dossiers, B2B and brand content: it carries the rigour of the production.">Voix off, dossiers, B2B et contenus de marque : elle porte le sérieux de la production.</p></div></div>
+</div>
+</section><section class="" id="carte">
+<div class="wrap">
+<div class="eyebrow" data-en="03 · Menu and pricing">03 · Carte et prix</div>
+<h2 data-en='Four recipes, an average price of &lt;span id="avgp"&gt;73.50&lt;/span&gt; SAR'>Quatre recettes, un prix moyen de <span id="avgp">73,50</span> SAR</h2>
+<p class="lead" data-en="Four items limit production complexity, stock and preparation errors. Move the sliders to test a different sales mix: the average price feeds the simulator below.">Quatre références limitent la complexité de production, les stocks et les erreurs de préparation. Déplacez les curseurs pour tester un autre mix de ventes : le prix moyen alimente le simulateur plus bas.</p><div class="cards rec"><div class="card"><img alt="Bowl KOOSKOOS poulet" data-alt-en="KOOSKOOS chicken bowl" loading="lazy" src="img2/poulet.jpg"/><h3 data-en="Chicken">Poulet</h3><p data-en="69 SAR incl. VAT · entry product">69 SAR TTC · produit d'appel</p></div><div class="card"><img alt="Bowl KOOSKOOS agneau" data-alt-en="KOOSKOOS lamb bowl" loading="lazy" src="img2/agneau.jpg"/><h3 data-en="Lamb">Agneau</h3><p data-en="89 SAR incl. VAT · premium item">89 SAR TTC · référence premium</p></div><div class="card"><img alt="Bowl KOOSKOOS merguez" data-alt-en="KOOSKOOS merguez bowl" loading="lazy" src="img2/merguez.jpg"/><h3>Merguez</h3><p data-en="79 SAR incl. VAT · spicy, signature">79 SAR TTC · épicée, signature</p></div><div class="card"><img alt="Bowl KOOSKOOS végétarien" data-alt-en="KOOSKOOS vegetarian bowl" loading="lazy" src="img2/vegetarien.jpg"/><h3 data-en="Vegetarian">Végétarien</h3><p data-en="59 SAR incl. VAT · dedicated broth">59 SAR TTC · bouillon dédié</p></div></div>
+<div class="panel">
+<div class="row2">
+<div class="ctl"><label data-en="Chicken · 69 SAR incl. VAT · entry product" for="m0">Poulet · 69 SAR TTC · produit d'appel</label><output id="o0"></output><input id="m0" max="100" min="0" step="1" type="range" value="50"/></div>
+<div class="ctl"><label data-en="Lamb · 89 SAR incl. VAT · premium item" for="m1">Agneau · 89 SAR TTC · référence premium</label><output id="o1"></output><input id="m1" max="100" min="0" step="1" type="range" value="25"/></div>
+<div class="ctl"><label data-en="Merguez · 79 SAR incl. VAT · spicy, signature" for="m2">Merguez · 79 SAR TTC · épicée, signature</label><output id="o2"></output><input id="m2" max="100" min="0" step="1" type="range" value="10"/></div>
+<div class="ctl"><label data-en="Vegetarian · 59 SAR incl. VAT · dedicated broth">Végétarien · 59 SAR TTC · bouillon dédié</label><output id="o3"></output><div style="grid-column:1/-1;font-size:13px;color:var(--muted)">Complète automatiquement le mix à 100 %.</div></div>
+</div>
+<div class="tiles">
+<div class="tile"><small data-en="Weighted average price incl. VAT">Prix moyen pondéré TTC</small><b id="t-ttc">73,50</b></div>
+<div class="tile"><small data-en="Average price excl. VAT (15% VAT)">Prix moyen HT (TVA 15 %)</small><b id="t-ht">63,91</b></div>
+</div>
+<button class="btn" data-en="Back to the dossier mix" id="resetmix" type="button">Revenir au mix du dossier</button>
+</div>
+<h3 data-en="Recipe architecture">Architecture des recettes</h3>
+<p data-en="Working base per bowl: 90 g dry couscous, 60 g carrot, 70 g courgette, 40 g turnip, 35 g onion, 30 g tomato, 20 g dried chickpeas, 10 g tomato paste, 10 g oil, 5 g spices and salt, 120 to 150 ml separate broth. These weights are costing prototypes, to be validated by tested recipe sheets.">Base de travail par bowl : 90 g de couscous sec, 60 g de carotte, 70 g de courgette, 40 g de navet, 35 g d'oignon, 30 g de tomate, 20 g de pois chiches secs, 10 g de concentré, 10 g d'huile, 5 g d'épices et de sel, 120 à 150 ml de bouillon séparé. Ces grammages sont des prototypes de costing, à valider par des fiches techniques testées.</p>
+<div class="tw"><table>
+<tr><th data-en="Recipe">Recette</th><th data-en="Protein / raw addition">Protéine / ajout cru</th><th data-en="Control point">Point de contrôle</th></tr>
+<tr><td data-en="Chicken">Poulet</td><td data-en="180 g bone-in">180 g avec os</td><td data-en="Edible yield, portion consistency">Rendement comestible, régularité de portion</td></tr>
+<tr><td data-en="Lamb">Agneau</td><td data-en="160 g bone-in">160 g avec os</td><td data-en="Yield, purchase price, cooking time">Rendement, prix d'achat, durée de cuisson</td></tr>
+<tr><td>Merguez</td><td>140 g</td><td data-en="Sourcing, cooking loss">Approvisionnement, perte de cuisson</td></tr>
+<tr><td data-en="Vegetarian">Végétarien</td><td data-en="Extra vegetables and chickpeas">Légumes et pois chiches additionnels</td><td data-en="Separate vegetable broth, no meat stock">Bouillon végétal distinct, aucun fond carné</td></tr>
+</table></div>
+</div>
+</section><section class="alt" id="marche">
+<div class="wrap">
+<div class="eyebrow" data-en="04 · Target market in Riyadh">04 · Marché cible à Riyad</div>
+<h2 data-en="Three uses: delivered, group, corporate">Trois usages : livré, groupé, entreprise</h2>
+<p class="lead" data-en="The presence of Maghrebi restaurants and couscous on delivery platforms shows the category is known. It does not by itself guarantee enough demand for a specialist brand: the price grid is therefore tested on conversion and repeat orders.">La présence de restaurants maghrébins et de couscous sur les plateformes montre que la catégorie est connue. Elle ne garantit pas, à elle seule, une demande suffisante pour une marque spécialisée : la grille de prix est donc testée sur la conversion et le réachat.</p>
+<div class="tw"><table>
+<tr><th>Segment</th><th data-en="Need">Besoin</th><th data-en="KOOSKOOS approach">Approche KOOSKOOS</th></tr>
+<tr><td data-en="Residential">Résidentiel</td><td data-en="Delivered lunch / dinner">Déjeuner / dîner livré</td><td data-en="Short menu, simple ordering, transport quality">Menu court, commande simple, qualité de transport</td></tr>
+<tr><td data-en="Offices and companies">Bureaux et entreprises</td><td data-en="Working meals, groups, events">Repas de travail, groupes, événements</td><td data-en="Group offers, pre-orders, B2B invoicing">Offres groupées, précommande, facturation B2B</td></tr>
+<tr><td data-en="Families and groups">Familles et groupes</td><td data-en="Meals to share">Repas à partager</td><td data-en="Formats to develop once the launch is validated">Formats à développer après validation du lancement</td></tr>
+<tr><td data-en="Customers seeking authentic cuisine">Clients d'une cuisine authentique</td><td data-en="Taste, provenance, experience">Goût, provenance, expérience</td><td data-en="Brand signature and consistency">Signature de marque et régularité</td></tr>
+</table></div><h3 data-en="Price benchmark, Riyadh couscous">Benchmark prix, couscous à Riyad</h3>
+<p data-en="Public menu prices observed (couscous and reference Moroccan dishes), to be re-checked on HungerStation and Jahez before the investor meeting. Indicative only.">Prix de carte publics relevés (couscous et plats marocains de référence), à revérifier sur HungerStation et Jahez avant la rencontre investisseur. Indicatif uniquement.</p>
+<div class="tw"><table><tr><th data-en="Venue / dish">Enseigne / plat</th><th class="n" data-en="Price SAR">Prix SAR</th><th data-en="Source">Source</th></tr>
+<tr><td>Château Marrakech · <span data-en="vegetable couscous">couscous légumes</span></td><td class="n">51</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
+<tr><td>Château Marrakech · <span data-en="tfaya couscous">couscous tfaya</span></td><td class="n">65</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
+<tr><td>Oshal · <span data-en="Moroccan chicken couscous">couscous poulet marocain</span></td><td class="n">73</td><td>Ananinja</td></tr>
+<tr><td>Château Marrakech · <span data-en="chicken couscous">couscous poulet</span></td><td class="n">75</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
+<tr><td>Château Marrakech · <span data-en="lamb and vegetables">agneau et légumes</span></td><td class="n">79</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
+<tr><td>Château Marrakech · <span data-en="royal couscous">couscous royal</span></td><td class="n">150</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
+<tr><td>Tanjiah · <span data-en="chicken tagine">tajine poulet</span></td><td class="n">58–63</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
+<tr><td>Tanjiah · <span data-en="lamb tagine">tajine agneau</span></td><td class="n">79–84</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
+<tr><td>White Garden · <span data-en="beef tagine">tajine bœuf</span></td><td class="n">~77</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
+<tr><td>CASA Moroccan · <span data-en="meat / fish main">plat viande / poisson</span></td><td class="n">~86 / ~75</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
+<tr><td><span data-en="Riyadh market · chicken couscous">Marché Riyad · couscous poulet</span></td><td class="n">~74</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
+<tr class="total"><td>KOOSKOOS · <span data-en="vegetarian / chicken / merguez / lamb">végétarien / poulet / merguez / agneau</span></td><td class="n">59 / 69 / 79 / 89</td><td data-en="Our grid, VAT incl.">Notre grille, TTC</td></tr></table></div>
+<p data-en="Reading: KOOSKOOS sits in the middle of the observed range for single-protein dishes, below the royal formats, in a bowl designed for delivery.">Lecture : KOOSKOOS se place au milieu de la fourchette observée pour les plats à une protéine, sous les formats royaux, dans un bowl pensé pour la livraison.</p>
+<h3 data-en="Channels and acquisition">Canaux et acquisition</h3>
+<p data-en="Delivery is the main channel at launch, complemented by direct sales to reduce dependence on commissions. B2B relies on targeted prospecting of offices, team orders, meetings and events. The strategy favours repeat orders over promotional volume alone.">La livraison est le canal principal au lancement, complétée par la vente directe pour réduire la dépendance aux commissions. Le B2B passe par la prospection ciblée de bureaux, commandes d'équipe, réunions et événements. La stratégie privilégie la répétition des commandes plutôt que le seul volume de promotions.</p>
+<div class="gal"><figure class="ph"><img alt="Repas d'équipe au bureau avec bowls et sacs KOOSKOOS" data-alt-en="Team lunch in an office with KOOSKOOS bowls and bags" loading="lazy" src="img2/b2b.jpg"/><figcaption data-en="Team orders and working lunches: a B2B channel to develop." style="font-size:13px;color:var(--muted);padding-top:6px">Commandes d'équipe et repas de travail : un canal B2B à développer.</figcaption></figure><figure class="ph"><img alt="Coursier KOOSKOOS à Riyad au coucher du soleil" data-alt-en="KOOSKOOS courier in Riyadh at sunset" loading="lazy" src="img2/livreur.jpg"/><figcaption data-en="Delivery, the main channel at launch." style="font-size:13px;color:var(--muted);padding-top:6px">La livraison, canal principal au lancement.</figcaption></figure></div>
+</div>
+</section><section class="" id="production">
+<div class="wrap">
+<div class="eyebrow">05 · Production</div>
+<h2 data-en="The journey of an order">Le parcours d'une commande</h2>
+<p class="lead" data-en="Preparation ahead of peaks, fast finishing to order. The dark kitchen is not a mere reheating point: it is the first production centre and the future quality benchmark of the network.">Préparation en amont des pics, finition rapide à la demande. La dark kitchen n'est pas un simple point de réchauffage : c'est le premier centre de production et le futur référent qualité du réseau.</p>
+<div aria-label="Étapes" class="steps" id="steps" role="group"></div>
+<div class="panel" id="stepbox" style="margin-top:6px"></div><figure class="ph"><img alt="Poste de conditionnement avec bowls et sacs marine" data-alt-en="Packing station with navy bowls and bags" loading="lazy" src="img2/conditionnement.jpg"/><figcaption data-en="Packing station: sealing, labelling, hand-over to the courier." style="font-size:13px;color:var(--muted);padding-top:6px">Poste de conditionnement : scellage, étiquetage, remise au coursier.</figcaption></figure>
+<div class="note" data-en="The kitchen must be a HOT type: a cold kitchen without suitable extraction does not meet the cooking need. The 90-second target applies to assembly, not cooking.">La cuisine doit être de type HOT : une cuisine froide sans extraction adaptée ne répond pas au besoin de cuisson. L'objectif de 90 secondes concerne l'assemblage, non la cuisson.</div>
+</div>
+</section><section class="alt" id="cuisine">
+<div class="wrap">
+<div class="eyebrow" data-en="06 · Kitchen and technical investment">06 · Cuisine et investissements techniques</div>
+<h2 data-en="A HOT kitchen for long cooking">Une cuisine HOT pour les cuissons longues</h2>
+<p class="lead" data-en="Budget assumption: rent of 6,000 SAR a month, a 12,000 SAR deposit and 6,000 SAR activation. This is not a signed contractual offer. Sales scenarios range from 30 to 100 bowls a day: volumes to test, not guaranteed capacity.">Hypothèse budgétaire : loyer de 6 000 SAR par mois, caution de 12 000 SAR et activation de 6 000 SAR. Ce n'est pas une offre contractuelle signée. Les scénarios de vente vont de 30 à 100 bowls par jour, des volumes à tester, non des capacités garanties.</p><figure class="ph"><img alt="Chef en tablier marine devant un couscoussier vapeur" data-alt-en="Chef in a navy apron at a steaming couscous pot" loading="lazy" src="img2/cuisine.jpg"/><figcaption data-en="The HOT kitchen: steam couscous pots, extraction, labelled pans." style="font-size:13px;color:var(--muted);padding-top:6px">La cuisine HOT : couscoussiers vapeur, extraction, bacs étiquetés.</figcaption></figure>
+<details>
+<summary><span data-en="Production equipment">Équipement de production</span><span data-en="44,400 SAR">44 400 SAR</span></summary>
+<div class="tw"><table id="tb-eq"></table></div>
+</details>
+<details>
+<summary><span data-en="Formalities for the four employees">Formalités des quatre salariés</span><span data-en="59,000 SAR">59 000 SAR</span></summary>
+<div class="tw"><table id="tb-for"></table></div>
+</details>
+<details>
+<summary><span data-en="Initial stock and launch purchases">Stock initial et achats de lancement</span><span data-en="30,000 SAR">30 000 SAR</span></summary>
+<div class="tw"><table id="tb-stock"></table></div>
+</details>
+<details>
+<summary><span data-en="Company set-up and licences">Création de la société et licences</span><span data-en="120,000 SAR">120 000 SAR</span></summary>
+<div class="tw"><table>
+<tr><td data-en="Company incorporation and procedures (two licences)">Constitution de la société et démarches (deux licences)</td><td class="n">110 000</td></tr>
+<tr><td data-en="Licences, permits, compliance">Licences, autorisations, conformité</td><td class="n">10 000</td></tr>
+<tr class="total"><td>Total</td><td class="n">120 000</td></tr>
+</table></div>
+</details>
+<p data-en="First-kitchen equipment is reconciled with what the lease already includes, to avoid duplicates. Future satellites will not need the same cooking equipment." style="margin-top:14px;font-size:14px;color:var(--muted)">Les équipements de la première cuisine sont rapprochés de ce que la location inclut déjà, pour éviter les doublons. Les satellites futurs n'auront pas besoin du même parc de cuisson.</p>
+</div>
+</section><section class="" id="equipe">
+<div class="wrap">
+<div class="eyebrow" data-en="07 · Hours and team">07 · Horaires et équipe</div>
+<h2 data-en="Four multi-skilled team members">Quatre collaborateurs polyvalents</h2>
+<p class="lead" data-en="Three people on shift, one resting on rotation. Reference payroll: 4 × 3,500 SAR, i.e. 14,000 SAR a month. The functions below need covering; they are not yet contract job titles.">Trois personnes en poste, une en repos selon rotation. Masse salariale de référence : 4 × 3 500 SAR, soit 14 000 SAR par mois. Les fonctions ci-dessous sont à couvrir ; elles ne sont pas encore des intitulés de contrat.</p><figure class="ph"><img alt="Équipe de quatre personnes en cuisine" data-alt-en="Team of four in the kitchen" loading="lazy" src="img2/equipe.jpg"/><figcaption data-en="Four multi-skilled team members, navy aprons and gold seal." style="font-size:13px;color:var(--muted);padding-top:6px">Quatre collaborateurs polyvalents, tablier marine et sceau doré.</figcaption></figure>
+<div class="cards">
+<div class="card"><h3>Production</h3><p data-en="Kitchen lead: cooking, standards, quality, yields, preparation.">Référent cuisine : cuisson, standards, qualité, rendements, préparation.</p></div>
+<div class="card"><h3 data-en="Preparation">Préparation</h3><p data-en="Mise en place, weighing, garnish, portion control.">Mise en place, pesée, garniture, contrôle de portion.</p></div>
+<div class="card"><h3 data-en="Dispatch">Expédition</h3><p data-en="Packaging, labelling, courier relations, accuracy.">Packaging, étiquetage, relation coursiers, exactitude.</p></div>
+<div class="card"><h3 data-en="Support">Soutien</h3><p data-en="Receiving, cleaning, restocking, peak cover.">Réception, nettoyage, réassort, couverture des pics.</p></div>
+</div>
+<div class="tw"><table>
+<tr><th data-en="Indicative time slot">Plage indicative</th><th data-en="Main activity">Activité dominante</th></tr>
+<tr><td data-en="Before 11 am">Avant 11 h</td><td data-en="Mise en place, cooking and checks">Mise en place, cuisson et contrôle</td></tr>
+<tr><td data-en="11 am – 3 pm">11 h – 15 h</td><td data-en="Lunch service, delivery and B2B (first peak)">Service déjeuner, livraison et B2B (premier pic)</td></tr>
+<tr><td data-en="3 pm – 6 pm">15 h – 18 h</td><td data-en="Restocking, production and prep for evening service">Réassort, production et préparation du service du soir</td></tr>
+<tr><td data-en="6 pm – 11 pm">18 h – 23 h</td><td data-en="Dinner service and delivery (second peak)">Service dîner et livraison (second pic)</td></tr>
+<tr><td data-en="After service">Après service</td><td data-en="Cleaning, readings, closing">Nettoyage, relevés, clôture</td></tr>
+</table></div>
+<p data-en="Rest days, breaks and overtime will respect labour law and observed volumes. Housing and transport: 3,000 SAR a month (36,000 SAR a year), included in fixed costs.">Les jours de repos, pauses et heures supplémentaires respecteront le droit du travail et les volumes observés. Logement et transport : 3 000 SAR par mois (36 000 SAR par an), inclus dans les charges fixes.</p>
+</div>
+</section><section class="alt" id="budget">
+<div class="wrap">
+<div class="eyebrow" data-en="08 · Opening budget">08 · Budget d'ouverture</div>
+<h2 data-en="323,400 SAR to open">323 400 SAR pour ouvrir</h2>
+<p class="lead" data-en="This envelope includes 25,000 SAR of initial cash and 15,000 SAR of contingency: it is not made up solely of consumed purchases.">Cette enveloppe inclut 25 000 SAR de trésorerie initiale et 15 000 SAR d'imprévus : elle ne se compose pas uniquement d'achats consommés.</p><figure class="ph"><img alt="Bowl marine placé dans un sac isotherme" data-alt-en="Navy bowl placed into an insulated bag" loading="lazy" src="img2/isotherme.jpg"/><figcaption data-en="From sealed bowl to insulated bag: packaging is part of the investment." style="font-size:13px;color:var(--muted);padding-top:6px">Du bowl scellé au sac isotherme : le packaging fait partie de l'investissement.</figcaption></figure>
+<div class="panel bars" id="openbars"></div>
+<h3 data-en="Three reserve levels" style="margin-top:34px">Trois niveaux de réserve</h3>
+<p data-en="Choose the number of months of fixed costs held in reserve. The dossier recommends six months.">Choisissez le nombre de mois de charges fixes placés en réserve. Le dossier recommande six mois.</p>
+<div aria-label="Scénario de réserve" class="radio" id="resopts" role="group"></div>
+<div class="panel"><div class="tiles" id="restiles"></div><p id="restxt" style="margin:0"></p></div>
+</div>
+</section><section class="" id="charges">
+<div class="wrap">
+<div class="eyebrow" data-en="09 · Fixed costs">09 · Charges fixes</div>
+<h2 data-en="37,500 SAR a month">37 500 SAR par mois</h2>
+<p class="lead" data-en="Basis of the reserve scenarios. It excludes the variable cost of bowls sold (ingredients, packaging, commissions).">Base des scénarios de réserve. Elle ne comprend pas le coût variable des bowls vendus (matières, emballages, commissions).</p>
+<div class="panel bars" id="fixbars"></div>
+</div>
+</section><section class="alt" id="eco">
+<div class="wrap">
+<div class="eyebrow" data-en="10 · Economic simulator">10 · Simulateur économique</div>
+<h2 data-en="Margin per bowl and break-even point">Marge par bowl et seuil de rentabilité</h2>
+<p class="lead" data-en="Starting values are those of the dossier. Change them to gauge the model's sensitivity. Contribution margin is calculated after ingredients, packaging, commission and payment processing, before fixed costs.">Les valeurs de départ sont celles du dossier. Modifiez-les pour mesurer la sensibilité du modèle. La marge contributive est calculée après matière, emballage, commission et traitement du paiement, avant charges fixes.</p>
+<div class="panel">
+<div class="row2">
+<div class="ctl"><label data-en="Bowls per day" for="s-vol">Bowls par jour</label><output id="so-vol"></output><input id="s-vol" max="120" min="10" step="1" type="range" value="40"/></div>
+<div class="ctl"><label data-en="Weighted platform commission (% of excl.-VAT sales)" for="s-com">Commission plateformes pondérée (% du HT)</label><output id="so-com"></output><input id="s-com" max="30" min="0" step="0.1" type="range" value="13.8"/></div>
+<div class="ctl"><label data-en="Ingredients, waste included (SAR / bowl)" for="s-mat">Matières, pertes comprises (SAR / bowl)</label><output id="so-mat"></output><input id="s-mat" max="25" min="5" step="0.05" type="range" value="9.73"/></div>
+<div class="ctl"><label for="s-pack">Packaging (SAR / bowl)</label><output id="so-pack"></output><input id="s-pack" max="8" min="1" step="0.1" type="range" value="3"/></div>
+<div class="ctl"><label data-en="Fixed costs (SAR / month)" for="s-fix">Charges fixes (SAR / mois)</label><output id="so-fix"></output><input id="s-fix" max="60000" min="20000" step="500" type="range" value="37500"/></div>
+<div class="ctl"><label data-en="Annual renewal of formalities" for="s-ren">Renouvellement annuel des formalités</label><output id="so-ren"></output><input id="s-ren" max="1" min="0" step="1" type="range" value="0"/></div>
+</div>
+<div class="note" data-en="The “renewal” slider adds 3,917 SAR a month (work permits, iqama, insurance: 47,000 SAR a year) to read the model at cruising speed, from year two." style="margin-top:0">Le curseur « renouvellement » ajoute 3 917 SAR par mois (permis de travail, iqama, assurance : 47 000 SAR par an) pour lire le modèle en régime de croisière, à partir de la deuxième année.</div>
+<div class="tiles" id="simtiles"></div>
+<div id="simchart"></div>
+<button class="btn" data-en="Back to the dossier values" id="resetsim" type="button">Revenir aux valeurs du dossier</button>
+</div>
+<div class="tw"><table id="tb-be"></table></div>
+<p data-en="Simulated operating results, before depreciation, financing, tax and partner remuneration. They are neither a guaranteed return nor a sales promise." style="font-size:14px;color:var(--muted)">Résultats d'exploitation simulés, avant amortissements, financement, impôt et rémunération des associés. Ils ne constituent ni un retour garanti ni une promesse de ventes.</p>
+</div>
+</section><section class="" id="trajectoires">
+<div class="wrap">
+<div class="eyebrow" data-en="11 · Twelve-month trajectories">11 · Trajectoires sur douze mois</div>
+<h2 data-en="Three ramp-ups">Trois montées en charge</h2>
+<p class="lead" data-en="The central case reaches 65 bowls a day in month twelve. These are planning assumptions, not pre-sold orders. The curves recalculate with the simulator settings.">L'hypothèse centrale atteint 65 bowls par jour au douzième mois. Ce sont des hypothèses de planification, non des commandes prévendues. Les courbes se recalculent avec les paramètres du simulateur.</p>
+<div aria-label="Scénario" class="tabs" id="scn" role="group"></div>
+<div class="tiles" id="trtiles"></div>
+<div class="panel" id="trchart"></div>
+<div class="tw"><table id="tb-tr"></table></div>
+<p data-en="The cumulative cash trough is derived from the assumptions above: sum of monthly operating results, before formalities and opening investments, which are funded separately." style="font-size:14px;color:var(--muted)">Le creux de trésorerie cumulé est un calcul dérivé des hypothèses ci-dessus : somme des résultats d'exploitation mensuels, avant formalités et investissements d'ouverture, financés séparément.</p>
+</div>
+</section><section class="alt" id="decaissement">
+<div class="wrap">
+<div class="eyebrow" data-en="12 · Release of the 550,000 SAR">12 · Décaissement des 550 000 SAR</div>
+<h2 data-en="Release in stages, not at signing">Débloquer par étapes, pas à la signature</h2>
+<p class="lead" data-en="A cash reading for the investor, not a contractual schedule. Available cash is not distributable profit.">Lecture de trésorerie pour l'investisseur, non échéancier contractuel. La trésorerie disponible n'est pas un bénéfice distribuable.</p>
+<div class="seg" id="seg"></div>
+<div class="legend" id="leg"></div>
+<div class="note" id="segtxt"></div>
+</div>
+</section><section class="" id="reseau">
+<div class="wrap">
+<div class="eyebrow" data-en="13 · Network development">13 · Développement du réseau</div>
+<h2 data-en="Proof, standardisation, extension">Preuve, standardisation, extension</h2><figure class="ph"><img alt="Sac marine KOOSKOOS devant le skyline de Riyad" data-alt-en="Navy KOOSKOOS bag against the Riyadh skyline" loading="lazy" src="img2/sac.jpg"/><figcaption data-en="The KOOSKOOS bag against the Riyadh skyline: the brand rolls out district by district." style="font-size:13px;color:var(--muted);padding-top:6px">Le sac KOOSKOOS devant le skyline de Riyad : la marque se déploie quartier par quartier.</figcaption></figure>
+<div class="cards">
+<div class="phase"><h3 data-en="Phase 1 · Central unit">Phase 1 · Unité centrale</h3><p data-en="Full production: semolina, broths, meats, vegetables, quality control, storage, dispatch. Stabilises recipes, measures volumes, trains teams.">Production complète : semoule, bouillons, viandes, légumes, contrôle qualité, stockage, expéditions. Stabilise les recettes, mesure les volumes, forme les équipes.</p></div>
+<div class="phase"><h3>Phase 2 · Satellites</h3><p data-en="Secure storage, reheating, finishing, assembly and distribution from the central unit's preparations. Little heavy equipment, a uniform product.">Stockage sécurisé, remise en température, finition, assemblage et distribution à partir des préparations de l'unité centrale. Peu d'équipement lourd, produit homogène.</p></div>
+<div class="phase"><h3 data-en="Phase 3 · Development">Phase 3 · Développement</h3><p data-en="A development project once delivery is proven: format (kiosk, pick-up point or other) and production capacity to be defined, financed and sized separately.">Projet de développement, une fois la livraison éprouvée : format (kiosque, point de retrait ou autre) et capacité de production à définir, à financer et dimensionner séparément.</p></div>
+</div>
+<div class="tw"><table>
+<tr><th data-en="Future format">Format futur</th><th data-en="Order of magnitude, not committed">Ordre de grandeur non engagé</th></tr>
+<tr><td data-en="Additional satellite dark kitchen">Dark kitchen satellite supplémentaire</td><td data-en="150,000 – 250,000 SAR per unit, to be resized">150 000 – 250 000 SAR par unité, à redimensionner</td></tr>
+<tr><td data-en="Development project (format to be defined)">Projet de développement (format à définir)</td><td data-en="To be costed once the market is proven">À chiffrer après preuve du marché</td></tr>
+</table></div>
+<p data-en="These amounts are not included in the 550,000 SAR requested." style="font-size:14px;color:var(--muted)">Ces montants ne sont pas inclus dans les 550 000 SAR demandés.</p>
+<h3 data-en="Conditions for moving to expansion" style="margin-top:30px">Conditions de passage à l'expansion</h3>
+<p data-en="The second site is not triggered because a reserve exists, but on criteria observed over several months. Tick the boxes to simulate a review.">La deuxième implantation ne se déclenche pas parce qu'une réserve existe, mais sur des critères observés pendant plusieurs mois. Cochez pour simuler un bilan.</p>
+<div class="panel" id="gates"></div>
+</div>
+</section><section class="alt" id="risques">
+<div class="wrap">
+<div class="eyebrow" data-en="14 · Risks and financial discipline">14 · Risques et discipline financière</div>
+<h2 data-en="Risks built into management">Des risques intégrés à la gestion</h2>
+<div class="tw"><table>
+<tr><th data-en="Risk">Risque</th><th data-en="Planned response">Réponse prévue</th></tr>
+<tr><td data-en="Slow commercial start">Démarrage commercial lent</td><td data-en="Six-month reserve, weekly volume tracking">Réserve de six mois, suivi hebdomadaire des volumes</td></tr>
+<tr><td data-en="Margin eroded by platforms">Marge dégradée par les plateformes</td><td data-en="Grow direct and B2B orders, manage promotions">Développer commandes directes et B2B, piloter les promotions</td></tr>
+<tr><td data-en="Ingredient variability">Variabilité des matières</td><td data-en="Recipe sheets, weighing, yield control, negotiated purchasing">Fiches techniques, pesées, contrôle des rendements, achats négociés</td></tr>
+<tr><td data-en="Quality breakdown in delivery">Rupture de qualité en livraison</td><td data-en="Separate broth, packaging tests, check at dispatch">Bouillon séparé, tests de packaging, contrôle au départ</td></tr>
+<tr><td data-en="Insufficient capacity">Capacité insuffisante</td><td data-en="Production trials before rollout, batch adjustment">Essais de production avant déploiement, ajustement des batchs</td></tr>
+<tr><td data-en="Legal and lease commitments">Engagements juridiques et locatifs</td><td data-en="Confirm the operating structure and HOT conditions before signing">Confirmer la structure d'exploitation et les conditions HOT avant signature</td></tr>
+</table></div>
+<h3 data-en="Steering indicators">Indicateurs de pilotage</h3>
+<div class="cards">
+<div class="card"><p data-en="&lt;b&gt;Bowls per day and per service&lt;/b&gt;&lt;br/&gt;Commercial traction"><b>Bowls par jour et par service</b><br/>Traction commerciale</p></div>
+<div class="card"><p data-en="&lt;b&gt;Average basket incl. VAT&lt;/b&gt;&lt;br/&gt;Product mix"><b>Panier moyen TTC</b><br/>Mix de produits</p></div>
+<div class="card"><p data-en="&lt;b&gt;Contribution margin per order&lt;/b&gt;&lt;br/&gt;Revenue after variable costs"><b>Marge contributive par commande</b><br/>Revenu après coûts variables</p></div>
+<div class="card"><p data-en="&lt;b&gt;Repeat-order rate&lt;/b&gt;&lt;br/&gt;Satisfaction and loyalty"><b>Taux de réachat</b><br/>Satisfaction et fidélisation</p></div>
+<div class="card"><p data-en="&lt;b&gt;Direct / platforms / B2B share&lt;/b&gt;&lt;br/&gt;Dependence on intermediaries"><b>Part direct / plateformes / B2B</b><br/>Dépendance aux intermédiaires</p></div>
+<div class="card"><p data-en="&lt;b&gt;Preparation time and errors&lt;/b&gt;&lt;br/&gt;Execution"><b>Temps de préparation et erreurs</b><br/>Exécution</p></div>
+</div>
+<p data-en="Tracking rhythm: daily orders and sales report, ingredient and waste control, weekly marketing review, monthly P&amp;L, rolling cash forecast.">Rythme de suivi : rapport quotidien commandes et chiffre d'affaires, contrôle matières et pertes, suivi hebdomadaire du marketing, compte de résultat mensuel, tableau de trésorerie prévisionnelle glissant.</p>
+</div>
+</section><section class="dark" id="conclusion">
+<div class="wrap">
+<div class="eyebrow">15 · Conclusion</div>
+<h2 data-en="Start small, measure, roll out" style="color:#f6efdc">Commencer petit, mesurer, déployer</h2>
+<p class="lead" data-en="KOOSKOOS combines a specialist concept, a manageable first production unit, a short menu and distribution suited to Riyadh. The project does not rely on opening an expensive restaurant: it starts with a dark kitchen that tests demand and prepares a network.">KOOSKOOS réunit un concept spécialisé, une première unité de production maîtrisable, une carte courte et une distribution adaptée à Riyad. Le projet ne repose pas sur l'ouverture d'un restaurant coûteux : il débute par une dark kitchen qui teste la demande et prépare un réseau.</p>
+<figure class="ph" style="max-width:760px"><img alt="Un client savoure un bowl KOOSKOOS" data-alt-en="A customer enjoying a KOOSKOOS bowl" loading="lazy" src="img2/degustation.jpg"/><figcaption data-en="Hmmm… Kwayyes !" style="font-size:13px;color:var(--muted);padding-top:6px">Hmmm… Kwayyes !</figcaption></figure><div class="ask"><small data-en="Proposal to the partner">Proposition au partenaire</small><b data-en="550,000 SAR">550 000 SAR</b></div>
+<p data-en="Launch plus six months of fixed costs in reserve. The terms of participation, the split of capital and governance rights will be discussed separately; no percentage of shares is presumed in this dossier." style="margin-top:16px">Lancement et six mois de charges fixes en réserve. Les modalités de participation, la répartition du capital et les droits de gouvernance feront l'objet d'une discussion séparée ; aucun pourcentage de parts n'est présumé dans ce dossier.</p>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="wrap">
+<p data-en='&lt;b style="color:#efe7d6"&gt;KOOSKOOS&lt;/b&gt; · Investor dossier · Riyadh · November 2026'><b style="color:#efe7d6">KOOSKOOS</b> · Dossier investisseur · Riyad · Novembre 2026</p>
+<p data-en="This document is a basis for discussion. Supplier prices, contractual terms and volumes are working assumptions, to be confirmed before commitment. Couscous-specific market figures are not presented as quantified demand studies. Visuals are projections of identity and packaging.">Ce document est un support de discussion. Les prix fournisseurs, les modalités contractuelles et les volumes sont des hypothèses de travail, à confirmer avant engagement. Les chiffres de marché propres au couscous ne sont pas présentés comme des études de demande quantifiées. Les visuels sont des projections d'identité et de packaging.</p>
+</div>
+</footer>
+</body></html><script>
+(function(){
+'use strict';
+var LANG='fr';
+try{var sv=localStorage.getItem('kk_lang');if(sv==='en'||sv==='fr')LANG=sv}catch(e){}
+var L=function(fr,en){return LANG==='en'?en:fr};
+var F=function(n,d){d=d||0;return Number(n).toLocaleString(LANG==='en'?'en-US':'fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d})};
+var $=function(id){return document.getElementById(id)};
+var GREEN='#16264a',GOLD='#9a7a2e',INK='#0b1426',MUT='#6b6256',GRID='#ddd3bf',BAD='#a3352b';
+
+/* Traduction statique */
+document.querySelectorAll('[data-en]').forEach(function(e){e.setAttribute('data-fr',e.innerHTML)});
+document.querySelectorAll('[data-alt-en]').forEach(function(e){e.setAttribute('data-alt-fr',e.getAttribute('alt'))});
+function applyStatic(){
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('[data-en]').forEach(function(e){e.innerHTML=LANG==='en'?e.getAttribute('data-en'):e.getAttribute('data-fr')});
+  document.querySelectorAll('[data-alt-en]').forEach(function(e){e.setAttribute('alt',LANG==='en'?e.getAttribute('data-alt-en'):e.getAttribute('data-alt-fr'))});
+  var v=$('filmv'),sc=$('films'),want='kooskoos_film_v8_'+LANG+'.mp4';
+  if(sc.getAttribute('src')!==want){var t=v.currentTime,pl=!v.paused;sc.setAttribute('src',want);v.setAttribute('poster','kooskoos_fin_'+LANG+'.png');v.load();}
+  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===LANG)});
+  document.title=L('KOOSKOOS · Dossier investisseur','KOOSKOOS · Investor dossier');
+}
+
+/* Navigation */
+var secs=[['top','Film','Film'],['proposition','Proposition','Proposal'],['concept','Concept','Concept'],['carte','Carte','Menu'],['marche','Marché','Market'],['production','Production','Production'],['cuisine','Cuisine','Kitchen'],['equipe','Équipe','Team'],['budget','Budget','Budget'],['charges','Charges fixes','Fixed costs'],['eco','Simulateur','Simulator'],['trajectoires','Trajectoires','Trajectories'],['decaissement','Décaissement','Release'],['reseau','Réseau','Network'],['risques','Risques','Risks'],['conclusion','Conclusion','Conclusion']];
+var links={};
+function drawNav(){
+  $('nav').innerHTML=secs.map(function(s){return '<a href="#'+s[0]+'" data-s="'+s[0]+'">'+L(s[1],s[2])+'</a>'}).join('');
+  links={};document.querySelectorAll('#nav a').forEach(function(a){links[a.dataset.s]=a});spy();
+}
+function spy(){var cur=null;secs.forEach(function(s){var e=$(s[0]);if(e&&e.getBoundingClientRect().top<120)cur=s[0]});
+  Object.keys(links).forEach(function(k){links[k].classList.toggle('on',k===cur)});
+  if(cur&&links[cur]){var n=document.querySelector('nav.top .wrap'),l=links[cur];var t=l.offsetLeft-n.clientWidth/2+l.clientWidth/2;if(Math.abs(n.scrollLeft-t)>40)n.scrollLeft=t}}
+window.addEventListener('scroll',spy,{passive:true});
+
+/* Données */
+var PRICES=[69,89,79,59],MIX0=[50,25,10,15];
+var mix=MIX0.slice();
+var S0={vol:40,com:13.8,mat:9.73,pack:3,fix:37500,ren:0};
+var S=Object.assign({},S0);
+var TR=0.03393,VAT=1.15,RENEW=47000/12;
+var RAMPS={'Prudent':[15,20,25,30,35,40,40,45,45,50,50,50],'Central':[20,25,30,35,40,45,50,50,55,60,60,65],'Dynamique':[25,35,45,50,60,70,75,80,85,90,95,100]};
+var RNAME={'Prudent':'Prudent','Central':'Central','Dynamique':'Dynamic'};
+var scn='Central';
+
+function calc(){
+  var ttc=0;for(var i=0;i<4;i++)ttc+=PRICES[i]*mix[i]/100;
+  var ht=ttc/VAT;
+  var comm=ht*S.com/100,trx=ht*TR;
+  var vari=S.mat+S.pack+comm+trx;
+  var contrib=ht-vari;
+  var fix=S.fix+(S.ren?RENEW:0);
+  return {ttc:ttc,ht:ht,comm:comm,trx:trx,vari:vari,contrib:contrib,fix:fix,be:contrib>0?fix/(contrib*30):Infinity};
+}
+
+/* Mix de ventes */
+var PCT=function(v){return v+(LANG==='en'?'%':' %')};
+function syncMix(src){
+  var v=[+$('m0').value,+$('m1').value,+$('m2').value];
+  var sum=v[0]+v[1]+v[2];
+  if(sum>100){v[src]-=sum-100;$('m'+src).value=v[src];sum=100}
+  mix=[v[0],v[1],v[2],100-sum];
+  for(var i=0;i<4;i++)$('o'+i).textContent=PCT(mix[i]);
+  var c=calc();$('avgp').textContent=F(c.ttc,2);$('t-ttc').textContent=F(c.ttc,2);$('t-ht').textContent=F(c.ht,2);
+  render();
+}
+[0,1,2].forEach(function(i){$('m'+i).addEventListener('input',function(){syncMix(i)})});
+$('resetmix').addEventListener('click',function(){[0,1,2].forEach(function(i){$('m'+i).value=MIX0[i]});syncMix(0)});
+
+/* Parcours de commande */
+var STEPS=[
+ [['Approvisionnement','Sourcing'],['Réception des matières et des emballages.','Receiving ingredients and packaging.'],['Qualité, température, dates et traçabilité.','Quality, temperature, dates and traceability.']],
+ [['Préparation','Preparation'],['Découpe, pesée, préparation des bouillons.','Cutting, weighing, preparing the broths.'],['Fiches recettes et rendements.','Recipe sheets and yields.']],
+ [['Cuisson','Cooking'],['Semoule vapeur, protéines et légumes.','Steamed semolina, proteins and vegetables.'],['Temps, températures, qualité sensorielle.','Times, temperatures, sensory quality.']],
+ [['Maintien','Holding'],['Bacs identifiés, chaîne du chaud et du froid.','Labelled containers, hot and cold chain.'],['HACCP, rotation des lots.','HACCP, batch rotation.']],
+ [['Commande','Order'],['Pesée, assemblage, bouillon séparé.','Weighing, assembly, separate broth.'],['Grammage, allergènes, présentation.','Portion weight, allergens, presentation.']],
+ [['Expédition','Dispatch'],['Scellage, étiquetage, remise au coursier.','Sealing, labelling, hand-over to the courier.'],['Temps de préparation et exactitude.','Preparation time and accuracy.']]];
+var stp=0;
+function drawSteps(){
+  $('steps').innerHTML=STEPS.map(function(s,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===stp)+'">'+(i+1)+'. '+L(s[0][0],s[0][1])+'</button>'}).join('');
+  var s=STEPS[stp];$('stepbox').innerHTML='<h3>'+L(s[0][0],s[0][1])+'</h3><p style="margin-top:8px"><b>'+L('Organisation.','Organisation.')+'</b> '+L(s[1][0],s[1][1])+'</p><p style="margin:0"><b>'+L('Contrôle.','Control.')+'</b> '+L(s[2][0],s[2][1])+'</p>';
+  document.querySelectorAll('#steps button').forEach(function(b){b.addEventListener('click',function(){stp=+b.dataset.i;drawSteps()})});
+}
+
+/* Tableaux fixes */
+function tbl(id,head,rows,total){
+  var h='<tr>'+head.map(function(x,i){return '<th'+(i>0?' class="n"':'')+'>'+x+'</th>'}).join('')+'</tr>';
+  h+=rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td'+(i>0?' class="n"':'')+'>'+c+'</td>'}).join('')+'</tr>'}).join('');
+  if(total)h+='<tr class="total">'+total.map(function(c,i){return '<td'+(i>0?' class="n"':'')+'>'+c+'</td>'}).join('')+'</tr>';
+  $(id).innerHTML=h;
+}
+var N=function(s){return LANG==='en'?String(s).replace(/ /g,','):s};
+function drawTables(){
+  var EQ=[['Couscoussiers vapeur','Steam couscous pots',2,2250,4500],['Fourneau 4 feux','4-burner range',1,3500,3500],['Marmites','Stock pots',3,800,2400],['Poêles / casseroles','Pans / saucepans',2,600,1200],['Bain-marie','Bain-marie',1,4500,4500],['Tables inox','Stainless tables',2,1500,3000],['Étagères inox','Stainless shelving',2,750,1500],['Bacs GN et couvercles','GN pans and lids',1,2500,2500],['Ustensiles','Utensils',1,2500,2500],['Balances et thermomètres','Scales and thermometers',1,800,800],['Poste conditionnement','Packing station',1,2500,2500],['Froid complémentaire','Additional refrigeration',1,8000,8000],['Hygiène et sécurité','Hygiene and safety',1,2500,2500],['Installation / raccordements','Installation / connections',1,5000,5000]];
+  tbl('tb-eq',[L('Équipement','Equipment'),L('Qté','Qty'),L('Unitaire','Unit'),L('Total SAR','Total SAR')],EQ.map(function(r){return [L(r[0],r[1]),r[2],F(r[3]),F(r[4])]}),[L('Total','Total'),'','',F(44400)]);
+  tbl('tb-for',[L('Poste','Item'),L('Calcul','Calculation'),L('Total SAR','Total SAR')],[[L('Transferts / visas','Transfers / visas'),'4 × 2 000'.replace(' ',LANG==='en'?',':' '),F(8000)],[L('Permis de travail','Work permits'),'4 × 9 600'.replace(' ',LANG==='en'?',':' '),F(38400)],['Iqama','4 × 650',F(2600)],[L('Assurance médicale','Medical insurance'),'4 × 1 500'.replace(' ',LANG==='en'?',':' '),F(6000)],[L('Examens et formalités','Medical exams and formalities'),'4 × 1 000'.replace(' ',LANG==='en'?',':' '),F(4000)]],[L('Total','Total'),'',F(59000)]);
+  tbl('tb-stock',[L('Famille','Category'),L('Budget SAR','Budget SAR')],[[L('Semoule','Semolina'),F(2000)],[L('Viandes','Meats'),F(10000)],[L('Légumes','Vegetables'),F(4000)],[L('Pois chiches','Chickpeas'),F(1500)],[L('Huiles et épices','Oils and spices'),F(2000)],[L('Sauces','Sauces'),F(1500)],[L('Bowls et couvercles','Bowls and lids'),F(5000)],[L('Sacs, étiquettes, couverts','Bags, labels, cutlery'),F(3000)],[L('Consommables','Consumables'),F(1000)]],[L('Total','Total'),F(30000)]);
+}
+
+/* Barres */
+function bars(id,items,total){
+  var mx=Math.max.apply(null,items.map(function(i){return i[1]}));
+  $(id).innerHTML=items.map(function(i){return '<div class="r"><span>'+L(i[0],i[2])+'</span><div class="t"><i style="width:'+(i[1]/mx*100)+'%"></i></div><b>'+F(i[1])+'</b></div>'}).join('')+
+  '<div class="r" style="border-top:2px solid var(--ink);margin-top:6px"><span><b>Total</b></span><div></div><b>'+F(total)+' SAR</b></div>';
+}
+function drawBars(){
+bars('openbars',[['Constitution de la société, deux licences',110000,'Company incorporation, two licences'],['Licences et autorisations',10000,'Licences and permits'],['Équipements et installation',44400,'Equipment and installation'],['Caution et activation cuisine',18000,'Kitchen deposit and activation'],['Formalités de quatre salariés',59000,'Formalities for four employees'],['Marketing de préouverture',12000,'Pre-opening marketing'],['Stock initial',30000,'Initial stock'],['Réserve de trésorerie initiale',25000,'Initial cash reserve'],['Imprévus',15000,'Contingency']],323400);
+bars('fixbars',[['Salaires, 4 collaborateurs',14000,'Salaries, 4 team members'],['Marketing récurrent',10000,'Recurring marketing'],['Loyer cuisine HOT',6000,'HOT kitchen rent'],['Logement et transport',3000,'Housing and transport'],['Électricité, eau, énergie',1800,'Electricity, water, energy'],['Administration et logiciels',1300,'Administration and software'],['Nettoyage, hygiène, maintenance',900,'Cleaning, hygiene, maintenance'],['Divers',500,'Miscellaneous']],37500);
+}
+
+/* Réserve */
+var RES=[3,6,12],resSel=6;
+function drawRes(){
+  $('resopts').setAttribute('aria-label',L('Scénario de réserve','Reserve scenario'));
+  $('resopts').innerHTML=RES.map(function(m){return '<button type="button" data-m="'+m+'" aria-pressed="'+(m===resSel)+'">'+m+L(' mois',' months')+(m===6?L(' · recommandé',' · recommended'):'')+'</button>'}).join('');
+  document.querySelectorAll('#resopts button').forEach(function(b){b.addEventListener('click',function(){resSel=+b.dataset.m;drawRes()})});
+  var r=37500*resSel,tot=323400+r;
+  $('restiles').innerHTML='<div class="tile"><small>'+L('Ouverture','Opening')+'</small><b>'+F(323400)+'</b></div><div class="tile"><small>'+L('Réserve d\'exploitation','Operating reserve')+'</small><b>'+F(r)+'</b></div><div class="tile"><small>'+L('Besoin total calculé','Total need calculated')+'</small><b>'+F(tot)+'</b></div>';
+  $('restxt').textContent=resSel===3?L('Réduit la trésorerie de sécurité : le projet absorbe moins de retard commercial.','Reduces the safety cash: the project can absorb less commercial delay.'):resSel===6?L('Protège la continuité si les ventes prennent du retard, sans surcapitaliser avant la validation du modèle. Arrondi à 550 000 SAR, soit 1 600 SAR de marge de présentation.','Protects continuity if sales are delayed, without over-capitalising before the model is validated. Rounded to 550,000 SAR, i.e. 1,600 SAR of presentation margin.'):L('Immobilise davantage de capital avant validation du modèle.','Ties up more capital before the model is validated.');
+}
+
+/* Simulateur */
+var SIMS=[['vol',function(v){return F(v)+L(' / jour',' / day')}],['com',function(v){return F(v,1)+(LANG==='en'?'%':' %')}],['mat',function(v){return F(v,2)+' SAR'}],['pack',function(v){return F(v,2)+' SAR'}],['fix',function(v){return F(v)+' SAR'}],['ren',function(v){return v?L('Inclus','Included'):L('Exclu','Excluded')}]];
+SIMS.forEach(function(s){$('s-'+s[0]).addEventListener('input',function(){S[s[0]]=+this.value;render()})});
+$('resetsim').addEventListener('click',function(){S=Object.assign({},S0);SIMS.forEach(function(s){$('s-'+s[0]).value=S0[s[0]]});render()});
+
+function lineChart(el,pts,cur){
+  var W=640,H=250,L_=56,R=14,T=14,B=34;
+  var ys=pts.map(function(p){return p[1]});var mn=Math.min(0,Math.min.apply(null,ys)),mx=Math.max(0,Math.max.apply(null,ys));
+  var pad=(mx-mn)*0.08||1;mn-=pad;mx+=pad;
+  var x=function(v){return L_+(v-pts[0][0])/(pts[pts.length-1][0]-pts[0][0])*(W-L_-R)};
+  var y=function(v){return T+(mx-v)/(mx-mn)*(H-T-B)};
+  var g='';var step=Math.pow(10,Math.floor(Math.log10((mx-mn)/4)));var st=[1,2,5,10].map(function(k){return k*step}).filter(function(k){return (mx-mn)/k<=6})[0]||step*10;
+  for(var t=Math.ceil(mn/st)*st;t<=mx;t+=st){g+='<line x1="'+L_+'" x2="'+(W-R)+'" y1="'+y(t)+'" y2="'+y(t)+'" stroke="'+GRID+'"/><text x="'+(L_-6)+'" y="'+(y(t)+4)+'" text-anchor="end">'+F(t)+'</text>'}
+  g+='<line x1="'+L_+'" x2="'+(W-R)+'" y1="'+y(0)+'" y2="'+y(0)+'" stroke="'+INK+'" stroke-width="1.4"/>';
+  pts.forEach(function(p,i){if(i%2===0||p[0]===pts[pts.length-1][0])g+='<text x="'+x(p[0])+'" y="'+(H-12)+'" text-anchor="middle">'+p[0]+'</text>'});
+  g+='<text x="'+((L_+W-R)/2)+'" y="'+(H-0)+'" text-anchor="middle">'+L('bowls par jour','bowls per day')+'</text>';
+  var d=pts.map(function(p,i){return (i?'L':'M')+x(p[0]).toFixed(1)+' '+y(p[1]).toFixed(1)}).join('');
+  g+='<path d="'+d+'" fill="none" stroke="'+GREEN+'" stroke-width="2.4"/>';
+  if(cur){g+='<line x1="'+x(cur[0])+'" x2="'+x(cur[0])+'" y1="'+T+'" y2="'+(H-B)+'" stroke="'+GOLD+'" stroke-dasharray="4 3"/><circle cx="'+x(cur[0])+'" cy="'+y(cur[1])+'" r="5" fill="'+GOLD+'"/>'}
+  el.innerHTML='<svg class="ch" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+L('Résultat d\'exploitation mensuel selon les bowls par jour','Monthly operating result by bowls per day')+'">'+g+'</svg>';
+}
+
+function render(){
+  var c=calc();
+  SIMS.forEach(function(s){$('so-'+s[0]).textContent=s[1](S[s[0]])});
+  var res=S.vol*30*c.contrib-c.fix;
+  var cls=function(v){return v>=0?'pos':'neg'};
+  $('simtiles').innerHTML=
+   '<div class="tile"><small>'+L('Prix moyen TTC / HT','Average price incl. / excl. VAT')+'</small><b>'+F(c.ttc,2)+' / '+F(c.ht,2)+'</b></div>'+
+   '<div class="tile"><small>'+L('Coûts variables / bowl','Variable costs / bowl')+'</small><b>'+F(c.vari,2)+'</b></div>'+
+   '<div class="tile"><small>'+L('Contribution / bowl','Contribution / bowl')+'</small><b class="'+cls(c.contrib)+'">'+F(c.contrib,2)+'</b></div>'+
+   '<div class="tile"><small>'+L('Seuil de rentabilité','Break-even point')+'</small><b>'+(isFinite(c.be)?F(c.be,1)+L(' / jour',' / day'):L('n.d.','n/a'))+'</b></div>'+
+   '<div class="tile"><small>'+L('CA TTC mensuel','Monthly sales incl. VAT')+'</small><b>'+F(S.vol*30*c.ttc)+'</b></div>'+
+   '<div class="tile"><small>'+L('Résultat mensuel','Monthly result')+'</small><b class="'+cls(res)+'">'+F(res)+'</b></div>';
+  var pts=[];for(var v=10;v<=100;v+=5)pts.push([v,v*30*c.contrib-c.fix]);
+  lineChart($('simchart'),pts,[Math.min(100,Math.max(10,S.vol)),Math.min(100,Math.max(10,S.vol))*30*c.contrib-c.fix]);
+  var vols=[20,30,32,40,50,75,100];
+  tbl('tb-be',[L('Bowls / jour','Bowls / day'),L('CA TTC / mois (SAR)','Sales incl. VAT / month (SAR)'),L('Résultat opérationnel / mois (SAR)','Operating result / month (SAR)')],vols.map(function(v){var r=v*30*c.contrib-c.fix;return [v,F(v*30*c.ttc),'<span class="'+cls(r)+'">'+F(r)+'</span>']}));
+  drawTraj(c);
+}
+
+/* Trajectoires */
+function drawTraj(c){
+  $('scn').setAttribute('aria-label',L('Scénario','Scenario'));
+  $('scn').innerHTML=Object.keys(RAMPS).map(function(k){return '<button type="button" data-k="'+k+'" aria-pressed="'+(k===scn)+'">'+L(k,RNAME[k])+'</button>'}).join('');
+  document.querySelectorAll('#scn button').forEach(function(b){b.addEventListener('click',function(){scn=b.dataset.k;render()})});
+  var r=RAMPS[scn],cum=0,mn=0,mi=0,rows=[],tot=0,cumA=[];
+  r.forEach(function(b,i){var m=b*30*c.contrib-c.fix;cum+=m;cumA.push(cum);if(cum<mn){mn=cum;mi=i}tot+=b*30;rows.push([i+1,b,m,cum])});
+  var ann=tot*c.contrib-12*c.fix,be=rows.filter(function(x){return x[2]>=0})[0];
+  var cls=function(v){return v>=0?'pos':'neg'};
+  $('trtiles').innerHTML=
+   '<div class="tile"><small>'+L('Bowls par an','Bowls per year')+'</small><b>'+F(tot)+'</b></div>'+
+   '<div class="tile"><small>'+L('CA TTC par an','Annual sales incl. VAT')+'</small><b>'+F(tot*c.ttc)+'</b></div>'+
+   '<div class="tile"><small>'+L('Résultat op. annuel','Annual operating result')+'</small><b class="'+cls(ann)+'">'+F(ann)+'</b></div>'+
+   '<div class="tile"><small>'+L('Premier mois à l\'équilibre','First break-even month')+'</small><b>'+(be?L('Mois ','Month ')+be[0]:L('Au-delà de 12','Beyond 12'))+'</b></div>'+
+   '<div class="tile"><small>'+L('Creux de trésorerie cumulé','Cumulative cash trough')+'</small><b class="neg">'+F(mn)+'</b></div>';
+  var W=640,H=270,L_=62,Rr=12,T=16,B=34,vals=rows.map(function(x){return x[2]}).concat(cumA);
+  var lo=Math.min(0,Math.min.apply(null,vals)),hi=Math.max(0,Math.max.apply(null,vals));var pd=(hi-lo)*0.08||1;lo-=pd;hi+=pd;
+  var y=function(v){return T+(hi-v)/(hi-lo)*(H-T-B)};var bw=(W-L_-Rr)/12;
+  var g='';var st=[5000,10000,20000,25000,50000,100000].filter(function(k){return (hi-lo)/k<=7})[0]||100000;
+  for(var t=Math.ceil(lo/st)*st;t<=hi;t+=st)g+='<line x1="'+L_+'" x2="'+(W-Rr)+'" y1="'+y(t)+'" y2="'+y(t)+'" stroke="'+GRID+'"/><text x="'+(L_-6)+'" y="'+(y(t)+4)+'" text-anchor="end">'+F(t)+'</text>';
+  rows.forEach(function(x,i){var m=x[2],xx=L_+i*bw+bw*0.2,h=Math.abs(y(m)-y(0));g+='<rect x="'+xx+'" y="'+Math.min(y(m),y(0))+'" width="'+bw*0.6+'" height="'+Math.max(h,1)+'" fill="'+(m>=0?GREEN:BAD)+'" opacity=".78"/><text x="'+(L_+i*bw+bw/2)+'" y="'+(H-14)+'" text-anchor="middle">'+(i+1)+'</text>'});
+  g+='<line x1="'+L_+'" x2="'+(W-Rr)+'" y1="'+y(0)+'" y2="'+y(0)+'" stroke="'+INK+'" stroke-width="1.4"/><text x="'+((L_+W-Rr)/2)+'" y="'+(H)+'" text-anchor="middle">'+L('mois','months')+'</text>';
+  var d=cumA.map(function(v,i){return (i?'L':'M')+(L_+i*bw+bw/2).toFixed(1)+' '+y(v).toFixed(1)}).join('');
+  g+='<path d="'+d+'" fill="none" stroke="'+GOLD+'" stroke-width="2.4"/>';
+  g+='<circle cx="'+(L_+mi*bw+bw/2)+'" cy="'+y(mn)+'" r="5" fill="'+GOLD+'"/><text x="'+(L_+mi*bw+bw/2+8)+'" y="'+(y(mn)+16)+'" style="fill:'+INK+';font-weight:600">'+L('creux ','trough ')+F(mn)+'</text>';
+  g+='<text x="'+(W-Rr)+'" y="'+(y(cumA[11])-8)+'" text-anchor="end" style="fill:'+INK+';font-weight:600">'+L('cumul ','cumulative ')+F(cumA[11])+'</text>';
+  $('trchart').innerHTML='<svg class="ch" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+L('Résultat mensuel et cumul sur douze mois, scénario ','Monthly result and cumulative total over twelve months, scenario ')+L(scn,RNAME[scn])+'">'+g+'</svg><div style="font-size:13px;color:var(--muted);margin-top:6px">'+L('Barres : résultat d\'exploitation du mois (SAR). Ligne : cumul depuis l\'ouverture.','Bars: operating result for the month (SAR). Line: cumulative since opening.')+'</div>';
+  tbl('tb-tr',[L('Mois','Month'),L('Bowls / jour','Bowls / day'),L('Résultat du mois','Result for the month'),L('Cumul','Cumulative')],rows.map(function(x){return [x[0],x[1],'<span class="'+cls(x[2])+'">'+F(x[2])+'</span>',F(x[3])]}));
+}
+
+/* Décaissement */
+var DEC=[['Constitution et licences','Incorporation and licences',120000,'#0b1426','Création, enregistrements et autorisations.','Set-up, registrations and permits.'],['Équipements, cuisine, imprévus','Equipment, kitchen, contingency',77400,'#16264a','Achats, caution, activation, raccordements, imprévus.','Purchases, deposit, activation, connections, contingency.'],['Personnel, marketing, stock, réserve initiale','Staff, marketing, stock, initial reserve',126000,'#9a7a2e','Formalités des salariés, préparation commerciale, premiers achats, trésorerie initiale.','Employee formalities, commercial preparation, first purchases, initial cash.'],['Réserve d\'exploitation six mois','Six-month operating reserve',225000,'#d4b46a','Charges fixes disponibles selon les besoins ; non consommée si l\'activité couvre ses charges.','Fixed costs available as needed; not consumed if the business covers its costs.'],['Arrondi d\'enveloppe','Rounding of the envelope',1600,'#6b6256','Marge de présentation.','Presentation margin.']];
+var ds=3;
+function drawDec(){
+  $('seg').innerHTML=DEC.map(function(d,i){return '<button type="button" data-i="'+i+'" aria-label="'+L(d[0],d[1])+'" aria-pressed="'+(i===ds)+'" style="width:'+(d[2]/550000*100)+'%;background:'+d[3]+'"></button>'}).join('');
+  $('leg').innerHTML=DEC.map(function(d,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===ds)+'"><span class="sw" style="background:'+d[3]+'"></span><span>'+L(d[0],d[1])+'<br><b>'+F(d[2])+' SAR</b> · '+F(d[2]/5500,1)+(LANG==='en'?'%':' %')+'</span></button>'}).join('');
+  $('segtxt').innerHTML='<b>'+L(DEC[ds][0],DEC[ds][1])+' · '+F(DEC[ds][2])+' SAR.</b> '+L(DEC[ds][4],DEC[ds][5]);
+  document.querySelectorAll('#seg button,#leg button').forEach(function(b){b.addEventListener('click',function(){ds=+b.dataset.i;drawDec()})});
+}
+
+/* Conditions d'expansion */
+var GATES=[['Demande commerciale','Commercial demand','Volume stable, réachat et zones de livraison identifiées','Stable volume, repeat orders and delivery zones identified'],['Marge','Margin','Contribution réelle positive après commissions et remises','Actual contribution positive after commissions and discounts'],['Qualité','Quality','Recettes reproductibles, délais et réclamations maîtrisés','Reproducible recipes, lead times and complaints under control'],['Production','Production','Capacité de l\'unité centrale à approvisionner un satellite','Central unit able to supply a satellite'],['Trésorerie','Cash','Charges couvertes et réserve de sécurité préservée','Costs covered and safety reserve preserved'],['Implantation','Location','Zone supplémentaire démontrant un potentiel de commandes','Additional area showing order potential']];
+var gstate=[0,0,0,0,0,0];
+function drawGates(){
+  $('gates').innerHTML=GATES.map(function(g,i){return '<label class="gate"><input type="checkbox" data-g="'+i+'"'+(gstate[i]?' checked':'')+'><span><b>'+L(g[0],g[1])+'</b><br>'+L(g[2],g[3])+'</span></label>'}).join('')+'<p id="gtxt" style="margin:14px 0 0;font-weight:600"></p>';
+  document.querySelectorAll('#gates input').forEach(function(i){i.addEventListener('change',function(){gstate[+i.dataset.g]=i.checked?1:0;gate()})});gate();
+}
+function gate(){var n=gstate.reduce(function(a,b){return a+b},0);$('gtxt').textContent=L(n+' critères sur 6 validés'+(n===6?' : la deuxième implantation peut être étudiée.':'.'),n+' of 6 criteria met'+(n===6?': the second site can be considered.':'.'))}
+
+function setLang(l){
+  LANG=l;try{localStorage.setItem('kk_lang',l)}catch(e){}
+  applyStatic();drawNav();drawSteps();drawTables();drawBars();drawRes();drawDec();drawGates();syncMix(0);
+}
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
+setLang(LANG);
+})();
+
+</script>
+</body>
+</html>
