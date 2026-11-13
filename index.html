@@ -148,7 +148,7 @@ button,.btn{color:var(--ink)}
 </style>
 </head>
 <body>
-<nav aria-label="Sommaire" class="top"><div class="wrap"><div id="nav" style="display:flex;gap:4px"></div><div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-l="fr" aria-pressed="true">FR</button><button type="button" data-l="en" aria-pressed="false">EN</button></div></div></nav>
+<nav aria-label="Sommaire" class="top"><div class="wrap"><div id="nav" style="display:flex;gap:4px"></div><div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-l="fr" aria-pressed="true">FR</button><button type="button" data-l="en" aria-pressed="false">EN</button><span style="width:8px"></span><button type="button" data-c="SAR" aria-pressed="true">SAR</button><button type="button" data-c="EUR" aria-pressed="false">€</button></div></div></nav><div id="curnote" style="display:none;background:#16264a;color:#d6b878;font-size:12.5px;padding:7px 16px;text-align:center"></div>
 <header class="dark hero" id="top">
 <div class="wrap">
 <figure style="margin:0 0 30px;padding:6px"><video aria-label="Film KOOSKOOS" controls="" id="filmv" playsinline="" poster="kooskoos_fin_fr.png" preload="metadata" style="width:100%;height:auto;display:block;background:#070d1a"><source id="films" src="kooskoos_film_v8_fr.mp4" type="video/mp4"/></video></figure><div class="grid" style="grid-template-columns:1fr">
@@ -164,8 +164,8 @@ button,.btn{color:var(--ink)}
 
 </div>
 <div class="kpis">
-<div class="kpi"><b data-en="323,400">323 400</b><span data-en="SAR to open, initial cash and contingency included">SAR d'ouverture, trésorerie initiale et imprévus inclus</span></div>
-<div class="kpi"><b data-en="225,000">225 000</b><span data-en="SAR reserve, six months of fixed costs">SAR de réserve, six mois de charges fixes</span></div>
+<div class="kpi"><b data-en="323,400" data-sar="323400">323 400</b><span data-en="SAR to open, initial cash and contingency included">SAR d'ouverture, trésorerie initiale et imprévus inclus</span></div>
+<div class="kpi"><b data-en="225,000" data-sar="225000">225 000</b><span data-en="SAR reserve, six months of fixed costs">SAR de réserve, six mois de charges fixes</span></div>
 <div class="kpi"><b>≈ 32</b><span data-en="bowls a day to cover fixed costs">bowls par jour pour couvrir les charges fixes</span></div>
 <div class="kpi"><b>4</b><span data-en="recipes, 4 multi-skilled team members">recettes, 4 collaborateurs polyvalents</span></div>
 </div>
@@ -245,18 +245,18 @@ button,.btn{color:var(--ink)}
 </table></div><h3 data-en="Price benchmark, Riyadh couscous">Benchmark prix, couscous à Riyad</h3>
 <p data-en="Public menu prices observed (couscous and reference Moroccan dishes), to be re-checked on HungerStation and Jahez before the investor meeting. Indicative only.">Prix de carte publics relevés (couscous et plats marocains de référence), à revérifier sur HungerStation et Jahez avant la rencontre investisseur. Indicatif uniquement.</p>
 <div class="tw"><table><tr><th data-en="Venue / dish">Enseigne / plat</th><th class="n" data-en="Price SAR">Prix SAR</th><th data-en="Source">Source</th></tr>
-<tr><td>Château Marrakech · <span data-en="vegetable couscous">couscous légumes</span></td><td class="n">51</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
-<tr><td>Château Marrakech · <span data-en="tfaya couscous">couscous tfaya</span></td><td class="n">65</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
-<tr><td>Oshal · <span data-en="Moroccan chicken couscous">couscous poulet marocain</span></td><td class="n">73</td><td>Ananinja</td></tr>
-<tr><td>Château Marrakech · <span data-en="chicken couscous">couscous poulet</span></td><td class="n">75</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
-<tr><td>Château Marrakech · <span data-en="lamb and vegetables">agneau et légumes</span></td><td class="n">79</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
-<tr><td>Château Marrakech · <span data-en="royal couscous">couscous royal</span></td><td class="n">150</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
-<tr><td>Tanjiah · <span data-en="chicken tagine">tajine poulet</span></td><td class="n">58–63</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
-<tr><td>Tanjiah · <span data-en="lamb tagine">tajine agneau</span></td><td class="n">79–84</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
-<tr><td>White Garden · <span data-en="beef tagine">tajine bœuf</span></td><td class="n">~77</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
-<tr><td>CASA Moroccan · <span data-en="meat / fish main">plat viande / poisson</span></td><td class="n">~86 / ~75</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
-<tr><td><span data-en="Riyadh market · chicken couscous">Marché Riyad · couscous poulet</span></td><td class="n">~74</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
-<tr class="total"><td>KOOSKOOS · <span data-en="vegetarian / chicken / merguez / lamb">végétarien / poulet / merguez / agneau</span></td><td class="n">59 / 69 / 79 / 89</td><td data-en="Our grid, VAT incl.">Notre grille, TTC</td></tr></table></div>
+<tr><td>Château Marrakech · <span data-en="vegetable couscous">couscous légumes</span></td><td class="n money">51</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
+<tr><td>Château Marrakech · <span data-en="tfaya couscous">couscous tfaya</span></td><td class="n money">65</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
+<tr><td>Oshal · <span data-en="Moroccan chicken couscous">couscous poulet marocain</span></td><td class="n money">73</td><td>Ananinja</td></tr>
+<tr><td>Château Marrakech · <span data-en="chicken couscous">couscous poulet</span></td><td class="n money">75</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
+<tr><td>Château Marrakech · <span data-en="lamb and vegetables">agneau et légumes</span></td><td class="n money">79</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
+<tr><td>Château Marrakech · <span data-en="royal couscous">couscous royal</span></td><td class="n money">150</td><td data-en="Tayar Media, May 2026">Tayar Media, mai 2026</td></tr>
+<tr><td>Tanjiah · <span data-en="chicken tagine">tajine poulet</span></td><td class="n money">58–63</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
+<tr><td>Tanjiah · <span data-en="lamb tagine">tajine agneau</span></td><td class="n money">79–84</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
+<tr><td>White Garden · <span data-en="beef tagine">tajine bœuf</span></td><td class="n money">~77</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
+<tr><td>CASA Moroccan · <span data-en="meat / fish main">plat viande / poisson</span></td><td class="n money">~86 / ~75</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
+<tr><td><span data-en="Riyadh market · chicken couscous">Marché Riyad · couscous poulet</span></td><td class="n money">~74</td><td data-en="Internal benchmark, Sept. 2026">Benchmark interne, sept. 2026</td></tr>
+<tr class="total"><td>KOOSKOOS · <span data-en="vegetarian / chicken / merguez / lamb">végétarien / poulet / merguez / agneau</span></td><td class="n money">59 / 69 / 79 / 89</td><td data-en="Our grid, VAT incl.">Notre grille, TTC</td></tr></table></div>
 <p data-en="Reading: KOOSKOOS sits in the middle of the observed range for single-protein dishes, below the royal formats, in a bowl designed for delivery.">Lecture : KOOSKOOS se place au milieu de la fourchette observée pour les plats à une protéine, sous les formats royaux, dans un bowl pensé pour la livraison.</p>
 <h3 data-en="Channels and acquisition">Canaux et acquisition</h3>
 <p data-en="Delivery is the main channel at launch, complemented by direct sales to reduce dependence on commissions. B2B relies on targeted prospecting of offices, team orders, meetings and events. The strategy favours repeat orders over promotional volume alone.">La livraison est le canal principal au lancement, complétée par la vente directe pour réduire la dépendance aux commissions. Le B2B passe par la prospection ciblée de bureaux, commandes d'équipe, réunions et événements. La stratégie privilégie la répétition des commandes plutôt que le seul volume de promotions.</p>
@@ -460,6 +460,49 @@ try{var sv=localStorage.getItem('kk_lang');if(sv==='en'||sv==='fr')LANG=sv}catch
 var L=function(fr,en){return LANG==='en'?en:fr};
 var F=function(n,d){d=d||0;return Number(n).toLocaleString(LANG==='en'?'en-US':'fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d})};
 var $=function(id){return document.getElementById(id)};
+/* Devise */
+var CUR='SAR',RATE=4.24;
+try{var sc0=localStorage.getItem('kk_cur');if(sc0==='EUR')CUR='EUR'}catch(e){}
+function M(n,d){if(CUR==='SAR')return F(n,d);var v=n/RATE,a=Math.abs(v);return F(v,a<10?2:a<100?1:0)}
+function CN(){return CUR==='SAR'?'SAR':'€'}
+function MU(n,d){var x=M(n,d);return CUR==='SAR'?x+' SAR':(LANG==='en'?'€'+x:x+' €')}
+function MA(t){if(CUR==='SAR')return F(t);var v=t/RATE;if(v===0)return '0';var p=Math.pow(10,Math.floor(Math.log(Math.abs(v))/Math.LN10)-1);return F(Math.round(v/p)*p)}
+var NUM='\\d{1,3}(?:[\\u00a0\\u202f ,]\\d{3})+(?:[.,]\\d+)?|\\d+(?:[.,]\\d+)?';
+function pn(x){x=x.replace(/[   ]/g,'');x=LANG==='en'?x.replace(/,/g,''):x.replace(',','.');return parseFloat(x)}
+function eur(x){var v=pn(x)/RATE,a=Math.abs(v),r=F(v,a<10?2:a<100?1:0);return r}
+function eu(x){var r=eur(x);return LANG==='en'?'€'+r:r+' €'}
+var ORIG=new WeakMap();
+function convText(t,money){
+  var o=t;
+  if(money){o=o.replace(new RegExp(NUM,'g'),function(x){return eur(x)});return o}
+  o=o.replace(new RegExp('('+NUM+')(\\s*[–-]\\s*)('+NUM+')[\\s\\u00a0\\u202f]*SAR(?![A-Za-z])','g'),function(m,a,sep,b){var ra=eur(a),rb=eur(b);return LANG==='en'?'€'+ra+sep+'€'+rb:ra+sep+rb+' €'});
+  o=o.replace(new RegExp('('+NUM+')[\\s\\u00a0\\u202f]*SAR(?![A-Za-z])','g'),function(m,a){return eu(a)});
+  o=o.replace(/\bSAR\b/g,'EUR');
+  return o;
+}
+var busy=false;
+function curPass(){
+  if(busy)return;busy=true;
+  try{
+    var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),n,list=[];
+    while((n=w.nextNode())){var p=n.parentNode;if(!p||/^(SCRIPT|STYLE)$/.test(p.nodeName)||(p.closest&&p.closest('.lang')))continue;list.push(n)}
+    list.forEach(function(n){
+      var t=n.nodeValue,money=!!(n.parentNode.closest&&n.parentNode.closest('td.money'));
+      if(CUR==='EUR'){
+        if(!money&&!/SAR/.test(t))return;
+        if(money&&ORIG.has(n)&&ORIG.get(n).conv===t)return;
+        var base=ORIG.has(n)?ORIG.get(n).o:t,c=convText(base,money);
+        if(c!==t){ORIG.set(n,{o:base,conv:c});n.nodeValue=c}
+      }else if(ORIG.has(n)){var r=ORIG.get(n);if(n.nodeValue===r.conv)n.nodeValue=r.o;ORIG.delete(n)}
+    });
+    document.querySelectorAll('[data-sar]').forEach(function(e){var v=+e.getAttribute('data-sar');e.textContent=CUR==='EUR'?F(v/RATE):F(v)});
+    document.querySelectorAll('.lang button[data-c]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.c===CUR)});
+    var cn=$('curnote');if(cn){cn.style.display=CUR==='EUR'?'block':'none';cn.textContent=L('Montants convertis en euros au taux indicatif de 1 € = '+F(RATE,2)+' SAR (interbancaire, mi-octobre 2026). Le dossier est établi en SAR.','Amounts converted to euros at an indicative rate of €1 = '+F(RATE,2)+' SAR (interbank, mid-October 2026). The dossier is prepared in SAR.')}
+  }finally{busy=false}
+}
+var mo=null;
+function watch(){if(mo)return;var t=null;mo=new MutationObserver(function(){if(busy||CUR!=='EUR')return;clearTimeout(t);t=setTimeout(curPass,30)});mo.observe(document.body,{childList:true,subtree:true,characterData:true})}
+
 var GREEN='#16264a',GOLD='#9a7a2e',INK='#0b1426',MUT='#6b6256',GRID='#ddd3bf',BAD='#a3352b';
 
 /* Traduction statique */
@@ -471,7 +514,7 @@ function applyStatic(){
   document.querySelectorAll('[data-alt-en]').forEach(function(e){e.setAttribute('alt',LANG==='en'?e.getAttribute('data-alt-en'):e.getAttribute('data-alt-fr'))});
   var v=$('filmv'),sc=$('films'),want='kooskoos_film_v8_'+LANG+'.mp4';
   if(sc.getAttribute('src')!==want){var t=v.currentTime,pl=!v.paused;sc.setAttribute('src',want);v.setAttribute('poster','kooskoos_fin_'+LANG+'.png');v.load();}
-  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===LANG)});
+  document.querySelectorAll('.lang button[data-l]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===LANG)});
   document.title=L('KOOSKOOS · Dossier investisseur','KOOSKOOS · Investor dossier');
 }
 
@@ -515,7 +558,7 @@ function syncMix(src){
   if(sum>100){v[src]-=sum-100;$('m'+src).value=v[src];sum=100}
   mix=[v[0],v[1],v[2],100-sum];
   for(var i=0;i<4;i++)$('o'+i).textContent=PCT(mix[i]);
-  var c=calc();$('avgp').textContent=F(c.ttc,2);$('t-ttc').textContent=F(c.ttc,2);$('t-ht').textContent=F(c.ht,2);
+  var c=calc();$('avgp').textContent=M(c.ttc,2);$('t-ttc').textContent=M(c.ttc,2);$('t-ht').textContent=M(c.ht,2);
   render();
 }
 [0,1,2].forEach(function(i){$('m'+i).addEventListener('input',function(){syncMix(i)})});
@@ -546,15 +589,15 @@ function tbl(id,head,rows,total){
 var N=function(s){return LANG==='en'?String(s).replace(/ /g,','):s};
 function drawTables(){
   var EQ=[['Couscoussiers vapeur','Steam couscous pots',2,2250,4500],['Fourneau 4 feux','4-burner range',1,3500,3500],['Marmites','Stock pots',3,800,2400],['Poêles / casseroles','Pans / saucepans',2,600,1200],['Bain-marie','Bain-marie',1,4500,4500],['Tables inox','Stainless tables',2,1500,3000],['Étagères inox','Stainless shelving',2,750,1500],['Bacs GN et couvercles','GN pans and lids',1,2500,2500],['Ustensiles','Utensils',1,2500,2500],['Balances et thermomètres','Scales and thermometers',1,800,800],['Poste conditionnement','Packing station',1,2500,2500],['Froid complémentaire','Additional refrigeration',1,8000,8000],['Hygiène et sécurité','Hygiene and safety',1,2500,2500],['Installation / raccordements','Installation / connections',1,5000,5000]];
-  tbl('tb-eq',[L('Équipement','Equipment'),L('Qté','Qty'),L('Unitaire','Unit'),L('Total SAR','Total SAR')],EQ.map(function(r){return [L(r[0],r[1]),r[2],F(r[3]),F(r[4])]}),[L('Total','Total'),'','',F(44400)]);
-  tbl('tb-for',[L('Poste','Item'),L('Calcul','Calculation'),L('Total SAR','Total SAR')],[[L('Transferts / visas','Transfers / visas'),'4 × 2 000'.replace(' ',LANG==='en'?',':' '),F(8000)],[L('Permis de travail','Work permits'),'4 × 9 600'.replace(' ',LANG==='en'?',':' '),F(38400)],['Iqama','4 × 650',F(2600)],[L('Assurance médicale','Medical insurance'),'4 × 1 500'.replace(' ',LANG==='en'?',':' '),F(6000)],[L('Examens et formalités','Medical exams and formalities'),'4 × 1 000'.replace(' ',LANG==='en'?',':' '),F(4000)]],[L('Total','Total'),'',F(59000)]);
-  tbl('tb-stock',[L('Famille','Category'),L('Budget SAR','Budget SAR')],[[L('Semoule','Semolina'),F(2000)],[L('Viandes','Meats'),F(10000)],[L('Légumes','Vegetables'),F(4000)],[L('Pois chiches','Chickpeas'),F(1500)],[L('Huiles et épices','Oils and spices'),F(2000)],[L('Sauces','Sauces'),F(1500)],[L('Bowls et couvercles','Bowls and lids'),F(5000)],[L('Sacs, étiquettes, couverts','Bags, labels, cutlery'),F(3000)],[L('Consommables','Consumables'),F(1000)]],[L('Total','Total'),F(30000)]);
+  tbl('tb-eq',[L('Équipement','Equipment'),L('Qté','Qty'),L('Unitaire','Unit'),L('Total '+CN(),'Total '+CN())],EQ.map(function(r){return [L(r[0],r[1]),r[2],M(r[3]),M(r[4])]}),[L('Total','Total'),'','',M(44400)]);
+  tbl('tb-for',[L('Poste','Item'),L('Calcul','Calculation'),L('Total '+CN(),'Total '+CN())],[[L('Transferts / visas','Transfers / visas'),'4 × '+M(2000),M(8000)],[L('Permis de travail','Work permits'),'4 × '+M(9600),M(38400)],['Iqama','4 × '+M(650),M(2600)],[L('Assurance médicale','Medical insurance'),'4 × '+M(1500),M(6000)],[L('Examens et formalités','Medical exams and formalities'),'4 × '+M(1000),M(4000)]],[L('Total','Total'),'',M(59000)]);
+  tbl('tb-stock',[L('Famille','Category'),L('Budget '+CN(),'Budget '+CN())],[[L('Semoule','Semolina'),M(2000)],[L('Viandes','Meats'),M(10000)],[L('Légumes','Vegetables'),M(4000)],[L('Pois chiches','Chickpeas'),M(1500)],[L('Huiles et épices','Oils and spices'),M(2000)],[L('Sauces','Sauces'),M(1500)],[L('Bowls et couvercles','Bowls and lids'),M(5000)],[L('Sacs, étiquettes, couverts','Bags, labels, cutlery'),M(3000)],[L('Consommables','Consumables'),M(1000)]],[L('Total','Total'),M(30000)]);
 }
 
 /* Barres */
 function bars(id,items,total){
   var mx=Math.max.apply(null,items.map(function(i){return i[1]}));
-  $(id).innerHTML=items.map(function(i){return '<div class="r"><span>'+L(i[0],i[2])+'</span><div class="t"><i style="width:'+(i[1]/mx*100)+'%"></i></div><b>'+F(i[1])+'</b></div>'}).join('')+
+  $(id).innerHTML=items.map(function(i){return '<div class="r"><span>'+L(i[0],i[2])+'</span><div class="t"><i style="width:'+(i[1]/mx*100)+'%"></i></div><b>'+M(i[1])+'</b></div>'}).join('')+
   '<div class="r" style="border-top:2px solid var(--ink);margin-top:6px"><span><b>Total</b></span><div></div><b>'+F(total)+' SAR</b></div>';
 }
 function drawBars(){
@@ -569,12 +612,12 @@ function drawRes(){
   $('resopts').innerHTML=RES.map(function(m){return '<button type="button" data-m="'+m+'" aria-pressed="'+(m===resSel)+'">'+m+L(' mois',' months')+(m===6?L(' · recommandé',' · recommended'):'')+'</button>'}).join('');
   document.querySelectorAll('#resopts button').forEach(function(b){b.addEventListener('click',function(){resSel=+b.dataset.m;drawRes()})});
   var r=37500*resSel,tot=323400+r;
-  $('restiles').innerHTML='<div class="tile"><small>'+L('Ouverture','Opening')+'</small><b>'+F(323400)+'</b></div><div class="tile"><small>'+L('Réserve d\'exploitation','Operating reserve')+'</small><b>'+F(r)+'</b></div><div class="tile"><small>'+L('Besoin total calculé','Total need calculated')+'</small><b>'+F(tot)+'</b></div>';
+  $('restiles').innerHTML='<div class="tile"><small>'+L('Ouverture','Opening')+'</small><b>'+M(323400)+'</b></div><div class="tile"><small>'+L('Réserve d\'exploitation','Operating reserve')+'</small><b>'+M(r)+'</b></div><div class="tile"><small>'+L('Besoin total calculé','Total need calculated')+'</small><b>'+M(tot)+'</b></div>';
   $('restxt').textContent=resSel===3?L('Réduit la trésorerie de sécurité : le projet absorbe moins de retard commercial.','Reduces the safety cash: the project can absorb less commercial delay.'):resSel===6?L('Protège la continuité si les ventes prennent du retard, sans surcapitaliser avant la validation du modèle. Arrondi à 550 000 SAR, soit 1 600 SAR de marge de présentation.','Protects continuity if sales are delayed, without over-capitalising before the model is validated. Rounded to 550,000 SAR, i.e. 1,600 SAR of presentation margin.'):L('Immobilise davantage de capital avant validation du modèle.','Ties up more capital before the model is validated.');
 }
 
 /* Simulateur */
-var SIMS=[['vol',function(v){return F(v)+L(' / jour',' / day')}],['com',function(v){return F(v,1)+(LANG==='en'?'%':' %')}],['mat',function(v){return F(v,2)+' SAR'}],['pack',function(v){return F(v,2)+' SAR'}],['fix',function(v){return F(v)+' SAR'}],['ren',function(v){return v?L('Inclus','Included'):L('Exclu','Excluded')}]];
+var SIMS=[['vol',function(v){return F(v)+L(' / jour',' / day')}],['com',function(v){return F(v,1)+(LANG==='en'?'%':' %')}],['mat',function(v){return MU(v,2)}],['pack',function(v){return MU(v,2)}],['fix',function(v){return MU(v)}],['ren',function(v){return v?L('Inclus','Included'):L('Exclu','Excluded')}]];
 SIMS.forEach(function(s){$('s-'+s[0]).addEventListener('input',function(){S[s[0]]=+this.value;render()})});
 $('resetsim').addEventListener('click',function(){S=Object.assign({},S0);SIMS.forEach(function(s){$('s-'+s[0]).value=S0[s[0]]});render()});
 
@@ -585,7 +628,7 @@ function lineChart(el,pts,cur){
   var x=function(v){return L_+(v-pts[0][0])/(pts[pts.length-1][0]-pts[0][0])*(W-L_-R)};
   var y=function(v){return T+(mx-v)/(mx-mn)*(H-T-B)};
   var g='';var step=Math.pow(10,Math.floor(Math.log10((mx-mn)/4)));var st=[1,2,5,10].map(function(k){return k*step}).filter(function(k){return (mx-mn)/k<=6})[0]||step*10;
-  for(var t=Math.ceil(mn/st)*st;t<=mx;t+=st){g+='<line x1="'+L_+'" x2="'+(W-R)+'" y1="'+y(t)+'" y2="'+y(t)+'" stroke="'+GRID+'"/><text x="'+(L_-6)+'" y="'+(y(t)+4)+'" text-anchor="end">'+F(t)+'</text>'}
+  for(var t=Math.ceil(mn/st)*st;t<=mx;t+=st){g+='<line x1="'+L_+'" x2="'+(W-R)+'" y1="'+y(t)+'" y2="'+y(t)+'" stroke="'+GRID+'"/><text x="'+(L_-6)+'" y="'+(y(t)+4)+'" text-anchor="end">'+MA(t)+'</text>'}
   g+='<line x1="'+L_+'" x2="'+(W-R)+'" y1="'+y(0)+'" y2="'+y(0)+'" stroke="'+INK+'" stroke-width="1.4"/>';
   pts.forEach(function(p,i){if(i%2===0||p[0]===pts[pts.length-1][0])g+='<text x="'+x(p[0])+'" y="'+(H-12)+'" text-anchor="middle">'+p[0]+'</text>'});
   g+='<text x="'+((L_+W-R)/2)+'" y="'+(H-0)+'" text-anchor="middle">'+L('bowls par jour','bowls per day')+'</text>';
@@ -601,16 +644,16 @@ function render(){
   var res=S.vol*30*c.contrib-c.fix;
   var cls=function(v){return v>=0?'pos':'neg'};
   $('simtiles').innerHTML=
-   '<div class="tile"><small>'+L('Prix moyen TTC / HT','Average price incl. / excl. VAT')+'</small><b>'+F(c.ttc,2)+' / '+F(c.ht,2)+'</b></div>'+
-   '<div class="tile"><small>'+L('Coûts variables / bowl','Variable costs / bowl')+'</small><b>'+F(c.vari,2)+'</b></div>'+
-   '<div class="tile"><small>'+L('Contribution / bowl','Contribution / bowl')+'</small><b class="'+cls(c.contrib)+'">'+F(c.contrib,2)+'</b></div>'+
+   '<div class="tile"><small>'+L('Prix moyen TTC / HT','Average price incl. / excl. VAT')+'</small><b>'+M(c.ttc,2)+' / '+M(c.ht,2)+'</b></div>'+
+   '<div class="tile"><small>'+L('Coûts variables / bowl','Variable costs / bowl')+'</small><b>'+M(c.vari,2)+'</b></div>'+
+   '<div class="tile"><small>'+L('Contribution / bowl','Contribution / bowl')+'</small><b class="'+cls(c.contrib)+'">'+M(c.contrib,2)+'</b></div>'+
    '<div class="tile"><small>'+L('Seuil de rentabilité','Break-even point')+'</small><b>'+(isFinite(c.be)?F(c.be,1)+L(' / jour',' / day'):L('n.d.','n/a'))+'</b></div>'+
-   '<div class="tile"><small>'+L('CA TTC mensuel','Monthly sales incl. VAT')+'</small><b>'+F(S.vol*30*c.ttc)+'</b></div>'+
-   '<div class="tile"><small>'+L('Résultat mensuel','Monthly result')+'</small><b class="'+cls(res)+'">'+F(res)+'</b></div>';
+   '<div class="tile"><small>'+L('CA TTC mensuel','Monthly sales incl. VAT')+'</small><b>'+M(S.vol*30*c.ttc)+'</b></div>'+
+   '<div class="tile"><small>'+L('Résultat mensuel','Monthly result')+'</small><b class="'+cls(res)+'">'+M(res)+'</b></div>';
   var pts=[];for(var v=10;v<=100;v+=5)pts.push([v,v*30*c.contrib-c.fix]);
   lineChart($('simchart'),pts,[Math.min(100,Math.max(10,S.vol)),Math.min(100,Math.max(10,S.vol))*30*c.contrib-c.fix]);
   var vols=[20,30,32,40,50,75,100];
-  tbl('tb-be',[L('Bowls / jour','Bowls / day'),L('CA TTC / mois (SAR)','Sales incl. VAT / month (SAR)'),L('Résultat opérationnel / mois (SAR)','Operating result / month (SAR)')],vols.map(function(v){var r=v*30*c.contrib-c.fix;return [v,F(v*30*c.ttc),'<span class="'+cls(r)+'">'+F(r)+'</span>']}));
+  tbl('tb-be',[L('Bowls / jour','Bowls / day'),L('CA TTC / mois ('+CN()+')','Sales incl. VAT / month ('+CN()+')'),L('Résultat opérationnel / mois ('+CN()+')','Operating result / month ('+CN()+')')],vols.map(function(v){var r=v*30*c.contrib-c.fix;return [v,M(v*30*c.ttc),'<span class="'+cls(r)+'">'+M(r)+'</span>']}));
   drawTraj(c);
 }
 
@@ -625,23 +668,23 @@ function drawTraj(c){
   var cls=function(v){return v>=0?'pos':'neg'};
   $('trtiles').innerHTML=
    '<div class="tile"><small>'+L('Bowls par an','Bowls per year')+'</small><b>'+F(tot)+'</b></div>'+
-   '<div class="tile"><small>'+L('CA TTC par an','Annual sales incl. VAT')+'</small><b>'+F(tot*c.ttc)+'</b></div>'+
-   '<div class="tile"><small>'+L('Résultat op. annuel','Annual operating result')+'</small><b class="'+cls(ann)+'">'+F(ann)+'</b></div>'+
+   '<div class="tile"><small>'+L('CA TTC par an','Annual sales incl. VAT')+'</small><b>'+M(tot*c.ttc)+'</b></div>'+
+   '<div class="tile"><small>'+L('Résultat op. annuel','Annual operating result')+'</small><b class="'+cls(ann)+'">'+M(ann)+'</b></div>'+
    '<div class="tile"><small>'+L('Premier mois à l\'équilibre','First break-even month')+'</small><b>'+(be?L('Mois ','Month ')+be[0]:L('Au-delà de 12','Beyond 12'))+'</b></div>'+
-   '<div class="tile"><small>'+L('Creux de trésorerie cumulé','Cumulative cash trough')+'</small><b class="neg">'+F(mn)+'</b></div>';
+   '<div class="tile"><small>'+L('Creux de trésorerie cumulé','Cumulative cash trough')+'</small><b class="neg">'+M(mn)+'</b></div>';
   var W=640,H=270,L_=62,Rr=12,T=16,B=34,vals=rows.map(function(x){return x[2]}).concat(cumA);
   var lo=Math.min(0,Math.min.apply(null,vals)),hi=Math.max(0,Math.max.apply(null,vals));var pd=(hi-lo)*0.08||1;lo-=pd;hi+=pd;
   var y=function(v){return T+(hi-v)/(hi-lo)*(H-T-B)};var bw=(W-L_-Rr)/12;
   var g='';var st=[5000,10000,20000,25000,50000,100000].filter(function(k){return (hi-lo)/k<=7})[0]||100000;
-  for(var t=Math.ceil(lo/st)*st;t<=hi;t+=st)g+='<line x1="'+L_+'" x2="'+(W-Rr)+'" y1="'+y(t)+'" y2="'+y(t)+'" stroke="'+GRID+'"/><text x="'+(L_-6)+'" y="'+(y(t)+4)+'" text-anchor="end">'+F(t)+'</text>';
+  for(var t=Math.ceil(lo/st)*st;t<=hi;t+=st)g+='<line x1="'+L_+'" x2="'+(W-Rr)+'" y1="'+y(t)+'" y2="'+y(t)+'" stroke="'+GRID+'"/><text x="'+(L_-6)+'" y="'+(y(t)+4)+'" text-anchor="end">'+MA(t)+'</text>';
   rows.forEach(function(x,i){var m=x[2],xx=L_+i*bw+bw*0.2,h=Math.abs(y(m)-y(0));g+='<rect x="'+xx+'" y="'+Math.min(y(m),y(0))+'" width="'+bw*0.6+'" height="'+Math.max(h,1)+'" fill="'+(m>=0?GREEN:BAD)+'" opacity=".78"/><text x="'+(L_+i*bw+bw/2)+'" y="'+(H-14)+'" text-anchor="middle">'+(i+1)+'</text>'});
   g+='<line x1="'+L_+'" x2="'+(W-Rr)+'" y1="'+y(0)+'" y2="'+y(0)+'" stroke="'+INK+'" stroke-width="1.4"/><text x="'+((L_+W-Rr)/2)+'" y="'+(H)+'" text-anchor="middle">'+L('mois','months')+'</text>';
   var d=cumA.map(function(v,i){return (i?'L':'M')+(L_+i*bw+bw/2).toFixed(1)+' '+y(v).toFixed(1)}).join('');
   g+='<path d="'+d+'" fill="none" stroke="'+GOLD+'" stroke-width="2.4"/>';
-  g+='<circle cx="'+(L_+mi*bw+bw/2)+'" cy="'+y(mn)+'" r="5" fill="'+GOLD+'"/><text x="'+(L_+mi*bw+bw/2+8)+'" y="'+(y(mn)+16)+'" style="fill:'+INK+';font-weight:600">'+L('creux ','trough ')+F(mn)+'</text>';
-  g+='<text x="'+(W-Rr)+'" y="'+(y(cumA[11])-8)+'" text-anchor="end" style="fill:'+INK+';font-weight:600">'+L('cumul ','cumulative ')+F(cumA[11])+'</text>';
+  g+='<circle cx="'+(L_+mi*bw+bw/2)+'" cy="'+y(mn)+'" r="5" fill="'+GOLD+'"/><text x="'+(L_+mi*bw+bw/2+8)+'" y="'+(y(mn)+16)+'" style="fill:'+INK+';font-weight:600">'+L('creux ','trough ')+M(mn)+'</text>';
+  g+='<text x="'+(W-Rr)+'" y="'+(y(cumA[11])-8)+'" text-anchor="end" style="fill:'+INK+';font-weight:600">'+L('cumul ','cumulative ')+M(cumA[11])+'</text>';
   $('trchart').innerHTML='<svg class="ch" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+L('Résultat mensuel et cumul sur douze mois, scénario ','Monthly result and cumulative total over twelve months, scenario ')+L(scn,RNAME[scn])+'">'+g+'</svg><div style="font-size:13px;color:var(--muted);margin-top:6px">'+L('Barres : résultat d\'exploitation du mois (SAR). Ligne : cumul depuis l\'ouverture.','Bars: operating result for the month (SAR). Line: cumulative since opening.')+'</div>';
-  tbl('tb-tr',[L('Mois','Month'),L('Bowls / jour','Bowls / day'),L('Résultat du mois','Result for the month'),L('Cumul','Cumulative')],rows.map(function(x){return [x[0],x[1],'<span class="'+cls(x[2])+'">'+F(x[2])+'</span>',F(x[3])]}));
+  tbl('tb-tr',[L('Mois','Month'),L('Bowls / jour','Bowls / day'),L('Résultat du mois','Result for the month'),L('Cumul','Cumulative')],rows.map(function(x){return [x[0],x[1],'<span class="'+cls(x[2])+'">'+M(x[2])+'</span>',M(x[3])]}));
 }
 
 /* Décaissement */
@@ -649,8 +692,8 @@ var DEC=[['Constitution et licences','Incorporation and licences',120000,'#0b142
 var ds=3;
 function drawDec(){
   $('seg').innerHTML=DEC.map(function(d,i){return '<button type="button" data-i="'+i+'" aria-label="'+L(d[0],d[1])+'" aria-pressed="'+(i===ds)+'" style="width:'+(d[2]/550000*100)+'%;background:'+d[3]+'"></button>'}).join('');
-  $('leg').innerHTML=DEC.map(function(d,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===ds)+'"><span class="sw" style="background:'+d[3]+'"></span><span>'+L(d[0],d[1])+'<br><b>'+F(d[2])+' SAR</b> · '+F(d[2]/5500,1)+(LANG==='en'?'%':' %')+'</span></button>'}).join('');
-  $('segtxt').innerHTML='<b>'+L(DEC[ds][0],DEC[ds][1])+' · '+F(DEC[ds][2])+' SAR.</b> '+L(DEC[ds][4],DEC[ds][5]);
+  $('leg').innerHTML=DEC.map(function(d,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===ds)+'"><span class="sw" style="background:'+d[3]+'"></span><span>'+L(d[0],d[1])+'<br><b>'+MU(d[2])+'</b> · '+F(d[2]/5500,1)+(LANG==='en'?'%':' %')+'</span></button>'}).join('');
+  $('segtxt').innerHTML='<b>'+L(DEC[ds][0],DEC[ds][1])+' · '+M(DEC[ds][2])+' SAR.</b> '+L(DEC[ds][4],DEC[ds][5]);
   document.querySelectorAll('#seg button,#leg button').forEach(function(b){b.addEventListener('click',function(){ds=+b.dataset.i;drawDec()})});
 }
 
@@ -665,9 +708,12 @@ function gate(){var n=gstate.reduce(function(a,b){return a+b},0);$('gtxt').textC
 
 function setLang(l){
   LANG=l;try{localStorage.setItem('kk_lang',l)}catch(e){}
-  applyStatic();drawNav();drawSteps();drawTables();drawBars();drawRes();drawDec();drawGates();syncMix(0);
+  applyStatic();drawNav();drawSteps();drawTables();drawBars();drawRes();drawDec();drawGates();syncMix(0);curPass();
 }
-document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
+function setCur(c){CUR=c;try{localStorage.setItem('kk_cur',c)}catch(e){}setLang(LANG)}
+document.querySelectorAll('.lang button[data-l]').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
+document.querySelectorAll('.lang button[data-c]').forEach(function(b){b.addEventListener('click',function(){setCur(b.dataset.c)})});
+watch();
 setLang(LANG);
 })();
 
