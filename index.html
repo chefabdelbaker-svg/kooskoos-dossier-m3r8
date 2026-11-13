@@ -497,7 +497,7 @@ function curPass(){
     });
     document.querySelectorAll('[data-sar]').forEach(function(e){var v=+e.getAttribute('data-sar');e.textContent=CUR==='EUR'?F(v/RATE):F(v)});
     document.querySelectorAll('.lang button[data-c]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.c===CUR)});
-    var cn=$('curnote');if(cn){cn.style.display=CUR==='EUR'?'block':'none';cn.textContent=L('Montants convertis en euros au taux indicatif de 1 € = '+F(RATE,2)+' SAR (interbancaire, mi-octobre 2026). Le dossier est établi en SAR.','Amounts converted to euros at an indicative rate of €1 = '+F(RATE,2)+' SAR (interbank, mid-October 2026). The dossier is prepared in SAR.')}
+    var cn=$('curnote');if(cn){cn.style.display=CUR==='EUR'?'block':'none';cn.innerHTML=L('Montants convertis en euros au taux indicatif de 1 € = '+F(RATE,2)+' SAR (interbancaire, mi-octobre 2026). Le dossier est établi en SAR. Source : <a href="https://www.b-sharpe.com/en/currency-converter/converter-eur-sar/" target="_blank" rel="noopener" style="color:#f6efdc">b-sharpe, EUR/SAR</a>.','Amounts converted to euros at an indicative rate of €1 = '+F(RATE,2)+' SAR (interbank, mid-October 2026). The dossier is prepared in SAR. Source: <a href="https://www.b-sharpe.com/en/currency-converter/converter-eur-sar/" target="_blank" rel="noopener" style="color:#f6efdc">b-sharpe, EUR/SAR</a>.')}
   }finally{busy=false}
 }
 var mo=null;
